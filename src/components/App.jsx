@@ -1,20 +1,16 @@
 import React from 'react';
 import Header from './Header';
+// import Register from './Register';
 import Home from './Home';
-import Register from './Register';
-import Roster from './Roster';
-import { Switch, Route, BrowserRouter } from 'react-router-dom';
+
+// import routes from '../routes';
 
 const App = () => (
   <div>
     <Header />
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/" component={() => <Home />} />
-        <Route path="/register" component={() => <Register />} />
-        <Route path="/roster" component={() => <Roster />} />
-      </Switch>
-    </BrowserRouter>
+    <Home />
+    {/* {routes} */}
+    {/* <Register /> */}
   </div>
 );
 
