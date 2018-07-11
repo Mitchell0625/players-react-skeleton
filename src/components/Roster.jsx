@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const Roster = () => <div>Roster</div>;
+const Roster = () => (
+  <div>
+    <p>The Roster</p>
+  </div>
+);
 
 export default Roster;

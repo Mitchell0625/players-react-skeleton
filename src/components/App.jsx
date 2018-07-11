@@ -1,16 +1,16 @@
 import React from 'react';
 import Header from './Header';
-// import Register from './Register';
+import Login from './Login';
 import Home from './Home';
 
-// import routes from '../routes';
+import routes from '../routes';
 
 const App = () => (
   <div>
     <Header />
-    <Home />
+    {/* <Home /> */}
     {/* {routes} */}
-    {/* <Register /> */}
+    {/* <Login /> */}
   </div>
 );
 
