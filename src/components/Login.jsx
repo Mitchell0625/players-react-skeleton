@@ -8,8 +8,7 @@ class Login extends Component {
 
     this.state = {
       email: '',
-      password: '',
-      user: {}
+      password: ''
     };
     this.loginUser = this.loginUser.bind(this);
     this.handleInput = this.handleInput.bind(this);
@@ -21,27 +20,26 @@ class Login extends Component {
 
   loginUser() {
     const { email, password } = this.state;
-    login(email, password).then(resp =>
-      this.setState({ user: resp.data }).then(() =>
-        this.props.holdUser(this.state.user)
-      )
-    );
+    login(email, password)
+      .then(resp => {
+        console.log(resp);
+        this.props.holdUser(resp);
+      })
+      .then(() => this.props.history.push('/roster'))
+      .catch(err => console.log(err));
   }
 
   render() {
     const { email, password, user } = this.state;
-    console.log(this.props);
     return (
       <div>
-        <form>
-          <input name="email" placeholder="Email" onChange={this.handleInput} />
-          <input
-            name="password"
-            placeholder="Password"
-            onChange={this.handleInput}
-          />
-          <button onClick={() => this.loginUser()}>Login</button>
-        </form>
+        <input name="email" placeholder="Email" onChange={this.handleInput} />
+        <input
+          name="password"
+          placeholder="Password"
+          onChange={this.handleInput}
+        />
+        <button onClick={() => this.loginUser()}>Login</button>
       </div>
     );
   }

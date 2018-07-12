@@ -17,7 +17,7 @@ export const registerUser = (first, last, email, pass, confirm) => {
     })
   })
     .then(resp => resp.json())
-    .catch(err => console.log(err));
+    .catch(err => console.log(err.message));
 };
 
 export const login = (email, pass) => {
@@ -32,7 +32,7 @@ export const login = (email, pass) => {
     })
   })
     .then(resp => resp.json())
-    .catch(err => console.log(err));
+    .catch(err => console.log(err.message));
 };
 
 export const addPlayers = (token, firstName, lastName, rating, hand) => {
@@ -53,17 +53,17 @@ export const addPlayers = (token, firstName, lastName, rating, hand) => {
     .then(data => {
       return [...players, data];
     })
-    .catch(err => console.log(err));
+    .catch(err => console.log(err.message));
 };
 
 export const getPlayers = token => {
   return fetch(`${baseUrl}api/players`, {
-    method: 'post',
+    method: 'get',
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`
     }
   })
     .then(resp => resp.json())
-    .catch(err => console.log(err));
+    .catch(err => console.log(err.message));
 };

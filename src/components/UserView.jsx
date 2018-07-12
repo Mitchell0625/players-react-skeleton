@@ -12,16 +12,25 @@ class UserView extends Component {
     };
   }
 
-  // componentDidMount() {
-  //   getPlayers(this.props.user.token).then(resp =>
-  //     this.setState({ players: resp.data })
-  //   );
-  // }
-
+  componentDidMount() {
+    getPlayers(this.props.user.token)
+      .then(data => this.setState({ players: data.players }))
+      .catch(err => console.log(err.message));
+  }
   render() {
     console.log(this.props);
-    let players = [];
-
+    console.log(this.state.players);
+    let team = this.state.players.map((e, i) => {
+      return (
+        <Roster
+          key={i}
+          first={e.first_name}
+          last={e.last_name}
+          rating={e.rating}
+          hand={e.handedness}
+        />
+      );
+    });
     return (
       <div>
         {this.props.user.token ? (
@@ -30,25 +39,16 @@ class UserView extends Component {
             <div className="roster-box">
               <h2>Current Roster</h2>
               {this.state.players.length > 1 && (
-                <select value="">
-                  <option value="first_name">First Name</option>
-                  <option value="last_name">Last Name</option>
-                  <option value="rating">Rating</option>
-                </select>
+                <div>
+                  <p>Sort by:</p>
+                  <select value="">
+                    <option value="first_name">First Name</option>
+                    <option value="last_name">Last Name</option>
+                    <option value="rating">Rating</option>
+                  </select>
+                </div>
               )}
-              {this.state.players.length > 1
-                ? (players = this.state.players.map((e, i) => {
-                    return (
-                      <Roster
-                        key={i}
-                        first={e.first_name}
-                        last={e.last_name}
-                        rating={e.rating}
-                        hand={e.handedness}
-                      />
-                    );
-                  }))
-                : ''}
+              {this.state.players.length >= 1 && <div>{team}</div>}
             </div>
           </div>
         ) : (

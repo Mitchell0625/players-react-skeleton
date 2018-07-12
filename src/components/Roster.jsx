@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 
-const Roster = () => {
+const Roster = props => {
   return (
-    <div>
-      <p>The Roster</p>
+    <div className="name-box">
+      <p>{props.first}</p>
+      <p>{props.last}</p>
+      <p>{props.rating}</p>
+      <p>{props.handedness}</p>
+      <button>Delete Player</button>
     </div>
   );
 };
