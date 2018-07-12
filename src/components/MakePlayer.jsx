@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import addPlayer from '../api';
+import { addPlayer } from '../api';
 
 class MakePlayer extends Component {
   constructor() {
@@ -35,10 +35,11 @@ class MakePlayer extends Component {
   }
 
   createPlayer(e) {
-    const { user, addPlayer } = this.props;
+    const { user } = this.props;
     const { first_name, last_name, rating, handedness } = this.state;
-    e.preventDefault();
+
     addPlayer(user.token, first_name, last_name, rating, handedness);
+    e.preventDefault();
   }
 
   render() {

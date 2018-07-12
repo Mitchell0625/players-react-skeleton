@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Roster from './Roster';
 import { Link, withRouter } from 'react-router-dom';
-import { getPlayers } from '../api';
+import { getPlayers, deletePlayer } from '../api';
 
 class UserView extends Component {
   constructor(props) {
@@ -10,6 +10,7 @@ class UserView extends Component {
     this.state = {
       players: []
     };
+    this.deleteAPlayer = this.deleteAPlayer.bind(this);
   }
 
   componentDidMount() {
@@ -17,17 +18,30 @@ class UserView extends Component {
       .then(data => this.setState({ players: data.players }))
       .catch(err => console.log(err.message));
   }
+  deleteAPlayer(id) {
+    console.log(id);
+    deletePlayer(this.props.user.token, id)
+      .then(player => {
+        let newArr = this.state.players.slice();
+        newArr.splice(id, 1);
+        this.setState({ players: newArr });
+      })
+      .catch(err => console.log(err));
+  }
+
   render() {
     console.log(this.props);
     console.log(this.state.players);
     let team = this.state.players.map((e, i) => {
       return (
         <Roster
-          key={i}
+          key={e.id}
+          id={e.id}
           first={e.first_name}
           last={e.last_name}
           rating={e.rating}
           hand={e.handedness}
+          delete={this.deleteAPlayer}
         />
       );
     });

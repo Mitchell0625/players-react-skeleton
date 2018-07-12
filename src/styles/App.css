@@ -8,7 +8,7 @@
       box-sizing: border-box;
   }
 
-.__App {
+.App {
   padding: 1em;
   background-color: #ff7400;
   height: 100vh;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { login } from '../api';
+import { loginUser } from '../api';
 
 class Login extends Component {
   constructor(props) {
@@ -10,7 +10,7 @@ class Login extends Component {
       email: '',
       password: ''
     };
-    this.loginUser = this.loginUser.bind(this);
+    this.login = this.login.bind(this);
     this.handleInput = this.handleInput.bind(this);
   }
 
@@ -18,9 +18,9 @@ class Login extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  loginUser() {
+  login() {
     const { email, password } = this.state;
-    login(email, password)
+    loginUser(email, password)
       .then(resp => {
         console.log(resp);
         this.props.holdUser(resp);
@@ -33,13 +33,25 @@ class Login extends Component {
     const { email, password, user } = this.state;
     return (
       <div>
-        <input name="email" placeholder="Email" onChange={this.handleInput} />
+        <label>Email</label>
         <input
+          id="email"
+          type="text"
+          name="email"
+          placeholder="Email"
+          onChange={this.handleInput}
+        />
+        <label>Password</label>
+        <input
+          id="password"
+          type="password"
           name="password"
           placeholder="Password"
           onChange={this.handleInput}
         />
-        <button onClick={() => this.loginUser()}>Login</button>
+        <button id="login" onClick={() => this.login()}>
+          Login
+        </button>
       </div>
     );
   }

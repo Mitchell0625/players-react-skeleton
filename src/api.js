@@ -20,7 +20,7 @@ export const registerUser = (first, last, email, pass, confirm) => {
     .catch(err => console.log(err.message));
 };
 
-export const login = (email, pass) => {
+export const loginUser = (email, pass) => {
   return fetch(`${baseUrl}api/login`, {
     method: 'post',
     headers: {
@@ -35,7 +35,7 @@ export const login = (email, pass) => {
     .catch(err => console.log(err.message));
 };
 
-export const addPlayers = (token, firstName, lastName, rating, hand) => {
+export const addPlayer = (token, firstName, lastName, rating, hand) => {
   return fetch(`${baseUrl}api/players`, {
     method: 'post',
     headers: {
@@ -59,6 +59,18 @@ export const addPlayers = (token, firstName, lastName, rating, hand) => {
 export const getPlayers = token => {
   return fetch(`${baseUrl}api/players`, {
     method: 'get',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    }
+  })
+    .then(resp => resp.json())
+    .catch(err => console.log(err.message));
+};
+
+export const deletePlayer = (token, id) => {
+  return fetch(`${baseUrl}api/players/${id}`, {
+    method: 'delete',
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`
