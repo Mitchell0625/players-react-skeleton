@@ -9,7 +9,7 @@ const Roster = props => {
           <p>{props.last}</p>
           <p>{props.rating}</p>
           <p>{props.handedness}</p>
-          <button onClick={() => props.delete()}>Delete Player</button>
+          <button onClick={() => props.delete(props.id)}>Delete Player</button>
         </div>
       ) : (
         <div className="name-box">

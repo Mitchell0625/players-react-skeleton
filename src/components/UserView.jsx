@@ -19,12 +19,11 @@ class UserView extends Component {
       .catch(err => console.log(err.message));
   }
   deleteAPlayer(id) {
-    console.log(id);
     deletePlayer(this.props.user.token, id)
       .then(player => {
         let newArr = this.state.players.slice();
-        newArr.splice(id, 1);
-        this.setState({ players: newArr });
+        const currentList = newArr.filter(e => e.id !== id);
+        this.setState({ players: currentList });
       })
       .catch(err => console.log(err));
   }
