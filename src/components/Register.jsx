@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 import { base_url } from '../api';
 
 class Register extends Component {
@@ -12,7 +13,8 @@ class Register extends Component {
       email: '',
       password: '',
       confirmPassword: '',
-      message: true
+      message: true,
+      user: {}
     };
     this.handleInput = this.handleInput.bind(this);
     this.confirmation = this.confirmation.bind(this);
@@ -44,21 +46,12 @@ class Register extends Component {
     } = this.state;
 
     registerUser(firstName, lastName, email, password, confirmPassword)
-      .then(resp => console.log(resp))
+      .then(resp => this.setState({ user: resp.data }))
+      .then(() => this.props.holdUser(this.state.user))
       .catch(err => console.log(err));
-    //   axios
-    //     .post(`https://players-api.developer.alchemy.codes/api/user`, {
-    //       firstName,
-    //       lastName,
-    //       email,
-    //       password,
-    //       confirmPassword
-    //     })
-    //     .then(resp => console.log(resp))
-    //     .catch(err => console.log(err));
-    // }
   }
   render() {
+    console.log(this.props);
     return (
       <div className="Register__page">
         <form onSubmit={() => this.createUser()}>
@@ -120,4 +113,4 @@ class Register extends Component {
   }
 }
 
-export default Register;
+export default withRouter(Register);

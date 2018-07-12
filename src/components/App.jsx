@@ -1,21 +1,53 @@
-import React from 'react';
-import Header from './Header.jsx';
-// import Login from './Login.jsx';
-// import Home from './Home.jsx';
-// import Register from './Register.jsx';
+import React, { Component } from 'react';
+import { Switch, Route } from 'react-router-dom';
+import Header from './Header';
+import Home from './Home';
+import Login from './Login';
+import Register from './Register';
+import UserView from './UserView';
+import MakePlayer from './MakePlayer';
 
-import routes from '../routes.js';
 import '../styles/App.css';
 
-const App = () => {
-  return (
-    <div className="__App">
-      <Header />
-      {/* <Home /> */}
-      {/* <Register /> */}
-      {routes}
-      {/* <Login /> */}
-    </div>
-  );
-};
+class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      user: {}
+    };
+    this.holdUser = this.holdUser.bind(this);
+  }
+
+  holdUser(info) {
+    this.setState({ user: info });
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <Header />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route
+            path="/login"
+            render={() => <Login holdUser={this.holdUser} />}
+          />
+          <Route
+            path="/register"
+            render={() => <Register holdUser={this.holdUser} />}
+          />
+          <Route
+            path="/roster"
+            render={() => <UserView user={this.state.user} />}
+          />
+          <Route
+            path="/players/new"
+            render={() => <MakePlayer user={this.state.user} />}
+          />
+        </Switch>
+      </div>
+    );
+  }
+}
 export default App;

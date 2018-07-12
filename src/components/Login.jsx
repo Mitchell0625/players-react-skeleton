@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
+import { login } from '../api';
 
 class Login extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      user: {}
     };
-
+    this.loginUser = this.loginUser.bind(this);
     this.handleInput = this.handleInput.bind(this);
   }
 
@@ -16,8 +19,18 @@ class Login extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  render() {
+  loginUser() {
     const { email, password } = this.state;
+    login(email, password).then(resp =>
+      this.setState({ user: resp.data }).then(() =>
+        this.props.holdUser(this.state.user)
+      )
+    );
+  }
+
+  render() {
+    const { email, password, user } = this.state;
+    console.log(this.props);
     return (
       <div>
         <form>
@@ -27,11 +40,11 @@ class Login extends Component {
             placeholder="Password"
             onChange={this.handleInput}
           />
-          <button type="submit">Login</button>
+          <button onClick={() => this.loginUser()}>Login</button>
         </form>
       </div>
     );
   }
 }
 
-export default Login;
+export default withRouter(Login);
