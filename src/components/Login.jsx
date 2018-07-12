@@ -17,6 +17,7 @@ class Login extends Component {
   }
 
   render() {
+    const { email, password } = this.state;
     return (
       <div>
         <form>
@@ -32,4 +33,5 @@ class Login extends Component {
     );
   }
 }
+
 export default Login;

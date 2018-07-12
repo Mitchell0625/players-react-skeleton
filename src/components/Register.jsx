@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import { base_url } from '../api';
 
 class Register extends Component {
   constructor(props) {
@@ -9,23 +11,61 @@ class Register extends Component {
       lastName: '',
       email: '',
       password: '',
-      confirmPassword: ''
+      confirmPassword: '',
+      message: true
     };
     this.handleInput = this.handleInput.bind(this);
+    this.confirmation = this.confirmation.bind(this);
+    this.createUser = this.createUser.bind(this);
   }
 
   handleInput(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ [e.target.name]: e.target.value }, () =>
+      this.confirmation()
+    );
   }
 
-  onSubmit() {}
+  confirmation() {
+    const { confirmPassword, password } = this.state;
+    if (password !== '' && password === confirmPassword) {
+      this.setState({ message: false });
+    } else {
+      this.setState({ message: true });
+    }
+  }
+  createUser() {
+    console.log('hit');
+    const {
+      firstName,
+      lastName,
+      email,
+      password,
+      confirmPassword
+    } = this.state;
+
+    registerUser(firstName, lastName, email, password, confirmPassword)
+      .then(resp => console.log(resp))
+      .catch(err => console.log(err));
+    //   axios
+    //     .post(`https://players-api.developer.alchemy.codes/api/user`, {
+    //       firstName,
+    //       lastName,
+    //       email,
+    //       password,
+    //       confirmPassword
+    //     })
+    //     .then(resp => console.log(resp))
+    //     .catch(err => console.log(err));
+    // }
+  }
   render() {
     return (
       <div className="Register__page">
-        <form>
+        <form onSubmit={() => this.createUser()}>
           <p>First Name</p>
           <input
             id="firstName"
+            type="text"
             name="firstName"
             placeholder="First Name"
             onChange={this.handleInput}
@@ -33,6 +73,7 @@ class Register extends Component {
           <p>Last Name</p>
           <input
             id="lastName"
+            type="text"
             name="lastName"
             placeholder="Last Name"
             onChange={this.handleInput}
@@ -40,6 +81,7 @@ class Register extends Component {
           <p>Email</p>
           <input
             id="email"
+            type="email"
             name="email"
             placeholder="email"
             onChange={this.handleInput}
@@ -48,6 +90,7 @@ class Register extends Component {
           <p>Password</p>
           <input
             id="password"
+            type="password"
             name="password"
             placeholder="Enter Password"
             onChange={this.handleInput}
@@ -55,16 +98,26 @@ class Register extends Component {
           <p>Confirm Password</p>
           <input
             id="confirmPassword"
+            type="password"
             name="confirmPassword"
             placeholder="Confirm Password"
             onChange={this.handleInput}
           />
-          <button id="register" type="submit" value="Submit">
-            Register
-          </button>
+          {this.state.message && this.state.password ? (
+            <p>Passwords do not match</p>
+          ) : (
+            ''
+          )}
+          <input
+            id="register"
+            type="submit"
+            value="Register"
+            disabled={this.state.message}
+          />
         </form>
       </div>
     );
   }
 }
+
 export default Register;
