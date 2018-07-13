@@ -26,7 +26,8 @@
 .home-button {
   border: 1px solid yellow;
   box-shadow: 2px 3px yellow;
-  background-color: #fff; }
+  background-color: #fff;
+  color: #333; }
 
 .pong {
   background-color: #fff;

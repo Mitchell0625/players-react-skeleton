@@ -3,8 +3,8 @@ import { Link, withRouter } from 'react-router-dom';
 import { addPlayer, token } from '../api';
 
 class MakePlayer extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       first_name: '',
       last_name: '',

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { registerUser } from '../api';
 
 class Register extends Component {
@@ -108,6 +108,9 @@ class Register extends Component {
             Register
           </button>
         </form>
+        <p>
+          Already have an account? <Link to="/login">Login</Link>
+        </p>
       </div>
     );
   }

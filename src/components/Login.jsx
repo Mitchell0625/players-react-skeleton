@@ -18,40 +18,47 @@ class Login extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  login() {
+  login(e) {
     const { email, password } = this.state;
     loginUser(email, password)
       .then(resp => {
-        console.log(resp);
         this.props.holdUser(resp);
       })
       .then(() => this.props.history.push('/roster'))
       .catch(err => console.log(err));
+
+    e.preventDefault();
   }
 
   render() {
-    const { email, password, user } = this.state;
     return (
-      <div>
-        <label>Email</label>
-        <input
-          id="email"
-          type="text"
-          name="email"
-          placeholder="Email"
-          onChange={this.handleInput}
-        />
-        <label>Password</label>
-        <input
-          id="password"
-          type="password"
-          name="password"
-          placeholder="Password"
-          onChange={this.handleInput}
-        />
-        <button id="login" onClick={() => this.login()}>
-          Login
-        </button>
+      <div className="login-page">
+        <div>
+          <h2>Login</h2>
+        </div>
+        <form onSubmit={this.login}>
+          <label>Email</label>
+          <input
+            id="email"
+            type="text"
+            name="email"
+            placeholder="Email"
+            onChange={this.handleInput}
+            required
+          />
+          <label>Password</label>
+          <input
+            id="password"
+            type="password"
+            name="password"
+            placeholder="Password"
+            onChange={this.handleInput}
+            required
+          />
+          <button id="login" type="submit" value="Submit">
+            Login
+          </button>
+        </form>
       </div>
     );
   }
