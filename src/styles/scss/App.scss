@@ -1,3 +1,5 @@
+@import './utils.scss';
+
 * {
     margin: 0;
       padding: 0;
@@ -10,8 +12,8 @@
 
 .App {
   padding: 1em;
-  background-color: #ff7400;
+  background-color: $orange;
   height: 100vh;
   width: 100vw;
-  font-family: 'Open Sans', sans-serif;
+  font-family: $text-font;
 }

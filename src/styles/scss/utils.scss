@@ -1,0 +1,21 @@
+$logo-font:'Pacifico', cursive;
+$text-font: 'Open Sans', sans-serif;
+$display-width: 100%;
+$orange: #ff7400;
+%large-button {
+    width: 295px;
+    height: 90px;
+    margin: 20px;
+    font-size: 18px;
+    border-radius: 7px;
+}
+%small-button {
+    width: 245px;
+    height: 70px;
+}
+
+%flex-row-center{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}

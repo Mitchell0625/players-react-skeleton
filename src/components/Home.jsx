@@ -1,15 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../styles/Home.css';
+import '../styles/css/Home.css';
 
 const Home = () => {
   return (
-    <div className="__Home">
+    <div className="home-container">
+      <div className="pong-game">
+        <div className="pong paddle left" />
+        <div className="pong ball" />
+        <div className="net" />
+        <div className="pong paddle right" />
+      </div>
       <Link to="/login">
-        <button>Login</button>
+        <button className="home-button">Login</button>
       </Link>
       <Link to="/register">
-        <button>Register</button>
+        <button className="home-button">Register</button>
       </Link>
     </div>
   );

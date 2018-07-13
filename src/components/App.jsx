@@ -7,7 +7,7 @@ import Register from './Register';
 import UserView from './UserView';
 import MakePlayer from './MakePlayer';
 
-import '../styles/App.css';
+import '../styles/css/App.css';
 
 class App extends Component {
   constructor(props) {
@@ -21,6 +21,7 @@ class App extends Component {
 
   holdUser(info) {
     this.setState({ user: info });
+    localStorage.setItem('token', this.state.user.token);
   }
 
   render() {
@@ -42,7 +43,7 @@ class App extends Component {
             render={() => <UserView user={this.state.user} />}
           />
           <Route
-            path="/players/new"
+            path="/player/new"
             render={() => <MakePlayer user={this.state.user} />}
           />
         </Switch>

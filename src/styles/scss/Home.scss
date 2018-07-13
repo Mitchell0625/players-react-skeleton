@@ -1,0 +1,171 @@
+@import './utils.scss';
+
+.home-container{
+    width: $display-width;
+    @extend %flex-row-center;
+    flex-direction: column;
+}
+.pong-game{
+    height: 50vh;
+    width: 60%;
+    flex-grow: 1;
+    @extend %flex-row-center;
+    justify-content:space-between;
+    position: relative;
+    border: 1px solid #fff;
+    padding:0 10%;
+    
+}
+
+.home-button{
+    @extend %large-button;
+    border: 1px solid yellow;
+    box-shadow: 2px 3px yellow;
+    background-color: #fff;
+    
+}
+.pong {
+    background-color: #fff;
+    opacity:0
+}
+.paddle {
+height: 100px;
+width: 15px;
+position: relative;
+background-color: #333;
+
+}
+.net {
+height: 80%;
+width: 2px;
+border: 2px dashed #fff;
+position: absolute;
+left: 50%;
+// opacity: 0;
+animation: net 2.5s ease-in-out;
+}
+.ball {
+width: 27px;
+height: 27px;
+border-radius: 50%;
+position: relative;
+animation: ball 2.5s ease-out;
+
+}
+.left{
+animation: left-paddle 2.5s linear;
+}
+
+.right{
+animation: right-paddle 2.5s linear;
+
+
+}
+@keyframes net{
+    from{
+        opacity:1
+    }
+    to{
+        opacity: 1
+    }
+}
+@keyframes left-paddle{
+0%{
+bottom:30%;
+opacity: 1;
+}
+25%{
+bottom:10%;
+opacity: 1;
+}
+35%{
+    bottom:-10%;
+    opacity: 1; 
+}
+50%{
+ bottom:-20%;
+ opacity: 1;   
+}
+75%{
+bottom:10%;
+opacity: 1;
+}
+100%{
+bottom:30%;
+opacity: 0.5;
+}
+}
+
+@keyframes ball{
+0%{
+    right: 44%;
+    bottom:30%;
+    opacity: 1;
+}
+25%{
+    right:-44%;
+    bottom: -30%;
+    opacity: 1
+}
+50%{
+    right:44%;
+    bottom:-30%;
+    opacity: 1;   
+   }
+   75%{
+       right:-44%;
+   bottom:30%;
+   opacity: 1;
+   }
+   100%{
+       right:50%;
+   bottom:-30%;
+   opacity: 1;
+   }
+100%{
+    leftt:0%;
+    top:30%;
+    opacity: 0.5
+}
+}
+@keyframes right-paddle{
+    0%{
+        top:30%;
+        opacity: 1;
+        }
+        25%{
+        top:30%;
+        opacity: 1;
+        }
+        35%{
+            top:20%;
+            opacity: 1; 
+        }
+        50%{
+         top:0%;
+         opacity: 1;   
+        }
+        75%{
+        top:30%;
+        opacity: 1;
+        }
+        100%{
+        top:30%;
+        opacity: 0.5;
+        }
+        }
+
+@media (max-width: 767px){
+    .home-button{
+        width: 275px;
+        height: 85px;
+    }
+    .pong-game{
+        width: 80%;
+        padding: 0;
+    }
+    .ball{
+        width: 20px;
+        height:20px;
+    }
+}

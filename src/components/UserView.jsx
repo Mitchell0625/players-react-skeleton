@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Roster from './Roster';
 import { Link, withRouter } from 'react-router-dom';
-import { getPlayers, deletePlayer } from '../api';
+import { getPlayers, deletePlayer, token } from '../api';
 
 class UserView extends Component {
   constructor(props) {
@@ -14,12 +14,12 @@ class UserView extends Component {
   }
 
   componentDidMount() {
-    getPlayers(this.props.user.token)
+    getPlayers()
       .then(data => this.setState({ players: data.players }))
       .catch(err => console.log(err.message));
   }
   deleteAPlayer(id) {
-    deletePlayer(this.props.user.token, id)
+    deletePlayer(id)
       .then(player => {
         let newArr = this.state.players.slice();
         const currentList = newArr.filter(e => e.id !== id);
@@ -29,8 +29,7 @@ class UserView extends Component {
   }
 
   render() {
-    console.log(this.props);
-    console.log(this.state.players);
+    console.log(token);
     let team = this.state.players.map((e, i) => {
       return (
         <Roster
@@ -46,7 +45,7 @@ class UserView extends Component {
     });
     return (
       <div>
-        {this.props.user.token ? (
+        {token ? (
           <div>
             <Link to="/players/new">Add Players</Link>
             <div className="roster-box">

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { addPlayer } from '../api';
+import { Link, withRouter } from 'react-router-dom';
+import { addPlayer, token } from '../api';
 
 class MakePlayer extends Component {
   constructor() {
@@ -38,7 +38,9 @@ class MakePlayer extends Component {
     const { user } = this.props;
     const { first_name, last_name, rating, handedness } = this.state;
 
-    addPlayer(user.token, first_name, last_name, rating, handedness);
+    addPlayer(first_name, last_name, rating, handedness).then(() =>
+      this.props.history.push('/roster')
+    );
     e.preventDefault();
   }
 
@@ -49,14 +51,30 @@ class MakePlayer extends Component {
         <div className="player-form">
           <form onSubmit={this.createPlayer}>
             <p>First Name</p>
-            <input type="text" name="first_name" onChange={this.handleInput} />
+            <input
+              id="firstName"
+              type="text"
+              name="first_name"
+              onChange={this.handleInput}
+            />
             <p>Last Name</p>
-            <input type="text" name="last_name" onChange={this.handleInput} />
+            <input
+              id="lastName"
+              type="text"
+              name="last_name"
+              onChange={this.handleInput}
+            />
             <p>Rating</p>
-            <input type="text" name="rating" onChange={this.handleInput} />
-            <p>Serving Hand</p>
+            <input
+              id="rating"
+              type="text"
+              name="rating"
+              onChange={this.handleInput}
+            />
+            <p>Handedness</p>
             <select
               name="handedness"
+              id="handedness"
               value={this.state.handedness}
               onChange={this.handleInput}
             >
@@ -64,15 +82,17 @@ class MakePlayer extends Component {
               <option value="left">Left</option>
               <option value="right">Right</option>
             </select>
-            <button type="submit" value="Submit">
+            <button id="create" type="submit" value="Submit">
               Create
             </button>
           </form>
+          {/* <div className="created">
+            <p>Player created successfully</p>
+          </div> */}
         </div>
-        <Link to="/roster">Go Back to Roster</Link>
       </div>
     );
   }
 }
 
-export default MakePlayer;
+export default withRouter(MakePlayer);

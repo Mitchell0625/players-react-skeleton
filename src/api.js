@@ -1,6 +1,7 @@
 export const baseUrl = 'https://players-api.developer.alchemy.codes/';
 export const user = {};
 export const players = [];
+export const token = localStorage.getItem('token');
 
 export const registerUser = (first, last, email, pass, confirm) => {
   return fetch(`${baseUrl}api/user`, {
@@ -35,7 +36,7 @@ export const loginUser = (email, pass) => {
     .catch(err => console.log(err.message));
 };
 
-export const addPlayer = (token, firstName, lastName, rating, hand) => {
+export const addPlayer = (firstName, lastName, rating, hand) => {
   return fetch(`${baseUrl}api/players`, {
     method: 'post',
     headers: {
@@ -56,7 +57,7 @@ export const addPlayer = (token, firstName, lastName, rating, hand) => {
     .catch(err => console.log(err.message));
 };
 
-export const getPlayers = token => {
+export const getPlayers = () => {
   return fetch(`${baseUrl}api/players`, {
     method: 'get',
     headers: {
@@ -68,11 +69,10 @@ export const getPlayers = token => {
     .catch(err => console.log(err.message));
 };
 
-export const deletePlayer = (token, id) => {
+export const deletePlayer = id => {
   return fetch(`${baseUrl}api/players/${id}`, {
     method: 'delete',
     headers: {
-      'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`
     }
   })

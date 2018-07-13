@@ -1,0 +1,21 @@
+/*
+  If you prefer your CSS Sassy. Run npm install -s node-sass and change the extension and import of this file.
+  Or use Less or whatever form of styling brings you the most Joy. Bonus points for following a CSS methodology. (BEM, OOCSS, ETC)
+*/
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  box-sizing: border-box; }
+
+.App {
+  padding: 1em;
+  background-color: #ff7400;
+  height: 100vh;
+  width: 100vw;
+  font-family: "Open Sans", sans-serif; }
+
+/*# sourceMappingURL=index.css.map */

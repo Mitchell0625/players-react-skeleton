@@ -1,0 +1,23 @@
+@import './utils.scss';
+
+.header-container{
+    @extend %flex-row-center;
+    width: $display-width;
+    height: 10vh; 
+    margin-bottom: 10px;
+}
+.header-h1{
+    font-family: $logo-font;
+    color: #fff;
+    font-size: 40px;
+ letter-spacing: 2px;
+ position: relative;
+}
+
+
+.header-img{
+    width: 50px;
+    margin-left: -6px;
+    margin-top: 5px;
+}
+
