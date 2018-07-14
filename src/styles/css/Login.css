@@ -1,0 +1,22 @@
+#login {
+  width: 245px;
+  height: 70px; }
+
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.login-page {
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 4px;
+  width: 80%;
+  height: 40%;
+  margin: auto; }
+
+#login {
+  background-color: #ff7400;
+  color: white; }
+
+/*# sourceMappingURL=Login.css.map */

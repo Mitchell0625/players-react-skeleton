@@ -1,24 +1,30 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import '../styles/css/Roster.css';
 
-const Roster = props => {
+
+const propTypes = {
+  first: PropTypes.string.isRequired,
+  last: PropTypes.string.isRequired,
+  rating: PropTypes.string.isRequired,
+  hand: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  delete: PropTypes.func.isRequired
+};
+function Roster(props) {
   return (
-    <div className="roster">
-      {location.pathname === '/roster' ? (
-        <div className="player-card">
-          <p>{props.first}</p>
-          <p>{props.last}</p>
-          <p>{props.rating}</p>
-          <p>{props.handedness}</p>
-          <button onClick={() => props.delete(props.id)}>Delete Player</button>
+    <div className="roster-card">
+      <div className="player-card">
+        <div className="roster-header">
+          <p>{props.first} {props.last}</p>
         </div>
-      ) : (
-        <div className="name-box">
-          <p>
-            {props.first} {props.last}
-          </p>
-        </div>
-      )}
+        <p>Rating: {props.rating}</p>
+        <p>{props.hand} Handed</p>
+        <button onClick={() => props.delete(props.id)}>Delete Player</button>
+      </div>
     </div>
   );
-};
+}
+
+Roster.propTypes = propTypes;
 export default Roster;

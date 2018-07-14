@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom';
 // Importing the fetch polyfill allows cypress to intercept fetch api requests.
 import 'whatwg-fetch';
 // Change me if you prefer sass,scss, less. (Note you may need to update the build config)
+import { BrowserRouter as Router } from 'react-router-dom';
 import './styles/css/index.css';
 import App from './components/App';
-import { BrowserRouter as Router } from 'react-router-dom';
+
 
 ReactDOM.render(
   <Router>

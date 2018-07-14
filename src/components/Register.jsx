@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 import { registerUser } from '../api';
+
+const propTypes = {
+  holdUser: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.string.isRequired
+  }).isRequired
+};
 
 class Register extends Component {
   constructor(props) {
@@ -21,8 +29,7 @@ class Register extends Component {
 
   handleInput(e) {
     this.setState({ [e.target.name]: e.target.value }, () =>
-      this.confirmation()
-    );
+      this.confirmation());
   }
 
   confirmation() {
@@ -34,7 +41,6 @@ class Register extends Component {
     }
   }
   createUser(e) {
-    console.log('hit');
     const {
       firstName,
       lastName,
@@ -97,8 +103,8 @@ class Register extends Component {
           {this.state.message && this.state.password ? (
             <p>Passwords do not match</p>
           ) : (
-            ''
-          )}
+              ''
+            )}
           <button
             id="register"
             type="submit"
@@ -115,5 +121,5 @@ class Register extends Component {
     );
   }
 }
-
+Register.propTypes = propTypes;
 export default withRouter(Register);

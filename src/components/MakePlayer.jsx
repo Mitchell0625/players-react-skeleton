@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
-import { addPlayer, token } from '../api';
+import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { addPlayer } from '../api';
 
+const propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.string.isRequired
+  }).isRequired
+};
 class MakePlayer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      first_name: '',
-      last_name: '',
+      firstName: '',
+      lastName: '',
       rating: '',
       handedness: '',
       button: true
@@ -24,23 +30,23 @@ class MakePlayer extends Component {
     });
   }
   constraints() {
-    const { first_name, last_name } = this.state;
-    // if (first_name !== last_name) {
-    //   if (this.state.handedness == "left" || "right") {
-    //     this.setState({ button: false });
-    //   } else {
-    //     this.setState({ button: true });
-    // }
-    // }
+    const { firstName, lastName } = this.state;
+    if (firstName !== lastName) {
+      if (this.state.handedness === 'left' || this.state.handedness === 'right') {
+        this.setState({ button: false });
+      } else {
+        this.setState({ button: true });
+      }
+    }
   }
 
   createPlayer(e) {
-    const { user } = this.props;
-    const { first_name, last_name, rating, handedness } = this.state;
+    const {
+      firstName, lastName, rating, handedness
+    } = this.state;
 
-    addPlayer(first_name, last_name, rating, handedness).then(() =>
-      this.props.history.push('/roster')
-    );
+    addPlayer(firstName, lastName, rating, handedness).then(() =>
+      this.props.history.push('/roster'));
     e.preventDefault();
   }
 
@@ -82,7 +88,7 @@ class MakePlayer extends Component {
               <option value="left">Left</option>
               <option value="right">Right</option>
             </select>
-            <button id="create" type="submit" value="Submit">
+            <button id="create" type="submit" value="Submit" disabled={this.state.button}>
               Create
             </button>
           </form>
@@ -94,5 +100,7 @@ class MakePlayer extends Component {
     );
   }
 }
+
+MakePlayer.propTypes = propTypes;
 
 export default withRouter(MakePlayer);

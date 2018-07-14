@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { loginUser } from '../api';
+import '../styles/css/Login.css';
 
+const propTypes = {
+  holdUser: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.string.isRequired
+  }).isRequired
+};
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -21,7 +29,7 @@ class Login extends Component {
   login(e) {
     const { email, password } = this.state;
     loginUser(email, password)
-      .then(resp => {
+      .then((resp) => {
         this.props.holdUser(resp);
       })
       .then(() => this.props.history.push('/roster'))
@@ -37,7 +45,7 @@ class Login extends Component {
           <h2>Login</h2>
         </div>
         <form onSubmit={this.login}>
-          <label>Email</label>
+          <p>Email</p>
           <input
             id="email"
             type="text"
@@ -46,7 +54,7 @@ class Login extends Component {
             onChange={this.handleInput}
             required
           />
-          <label>Password</label>
+          <p>Password</p>
           <input
             id="password"
             type="password"
@@ -63,5 +71,6 @@ class Login extends Component {
     );
   }
 }
+Login.propTypes = propTypes;
 
 export default withRouter(Login);

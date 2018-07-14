@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/css/Home.css';
 
-const Home = () => {
+function Home() {
   return (
     <div className="home-container">
       <div className="pong-game">
@@ -19,5 +19,5 @@ const Home = () => {
       </Link>
     </div>
   );
-};
+}
 export default Home;

@@ -1,6 +1,8 @@
 {
   "extends": "airbnb",
-  "plugins": ["react"],
+  "plugins": [
+    "react"
+  ],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true,
@@ -9,7 +11,21 @@
     }
   },
   "rules": {
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    ],
+    "comma-dangle": [
+      "error",
+      {
+        "functions": "ignore"
+      }
+    ]
   },
   "env": {
     "browser": true,
