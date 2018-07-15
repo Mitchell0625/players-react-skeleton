@@ -1,2 +1,23 @@
 @import './utils.scss';
+.roster-card{
+    border: 1px solid #333;
+    height: 200px;
+    width: 150px;
+   background-color: #fff;
 
+}
+.roster-header {
+    padding-top: 10px;
+    border-bottom: 1px solid #333;
+}
+.roster-name {
+    font-size: 18px;
+    line-height: 30px;
+}
+.roster-footer{
+    @extend %flex-row-center;
+}
+
+.bold {
+    font-weight: strong;
+}

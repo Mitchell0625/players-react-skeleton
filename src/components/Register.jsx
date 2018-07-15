@@ -6,7 +6,7 @@ import { registerUser } from '../api';
 const propTypes = {
   holdUser: PropTypes.func.isRequired,
   history: PropTypes.shape({
-    push: PropTypes.string.isRequired
+    push: PropTypes.func.isRequired
   }).isRequired
 };
 
@@ -92,6 +92,7 @@ class Register extends Component {
             placeholder="Enter Password"
             onChange={this.handleInput}
           />
+          <i className="fas fa-lock-open" />
           <p>Confirm Password</p>
           <input
             id="confirmPassword"
@@ -100,6 +101,8 @@ class Register extends Component {
             placeholder="Confirm Password"
             onChange={this.handleInput}
           />
+          <i className="fas fa-lock-open" />
+          <i className="fas fa-lock" />
           {this.state.message && this.state.password ? (
             <p>Passwords do not match</p>
           ) : (

@@ -22,23 +22,24 @@ class MakePlayer extends Component {
     this.handleInput = this.handleInput.bind(this);
     this.createPlayer = this.createPlayer.bind(this);
     this.constraints = this.constraints.bind(this);
+    // this.selection = this.selection.bind(this);
   }
 
   handleInput(e) {
     this.setState({ [e.target.name]: e.target.value }, () => {
-      this.constraints();
+      this.constraints(e);
     });
   }
   constraints() {
     const { firstName, lastName } = this.state;
-    if (firstName !== lastName) {
-      if (this.state.handedness === 'left' || this.state.handedness === 'right') {
+    if (this.state.handedness === 'left' || this.state.handedness === 'right') {
+      console.log('hit');
+      if (firstName !== lastName) {
         this.setState({ button: false });
-      } else {
-        this.setState({ button: true });
       }
     }
   }
+
 
   createPlayer(e) {
     const {
@@ -51,6 +52,7 @@ class MakePlayer extends Component {
   }
 
   render() {
+    // console.log([this.state.handedness, this.state.button]);
     return (
       <div>
         <h2>Create New Player</h2>
@@ -73,7 +75,7 @@ class MakePlayer extends Component {
             <p>Rating</p>
             <input
               id="rating"
-              type="text"
+              type="number"
               name="rating"
               onChange={this.handleInput}
             />

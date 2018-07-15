@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { loginUser } from '../api';
+// import ErrorBoundary from './ErrorBoundary';
 import '../styles/css/Login.css';
 
 const propTypes = {
   holdUser: PropTypes.func.isRequired,
   history: PropTypes.shape({
-    push: PropTypes.string.isRequired
+    push: PropTypes.func.isRequired
   }).isRequired
 };
 class Login extends Component {
@@ -31,9 +32,8 @@ class Login extends Component {
     loginUser(email, password)
       .then((resp) => {
         this.props.holdUser(resp);
-      })
-      .then(() => this.props.history.push('/roster'))
-      .catch(err => console.log(err));
+      }).then(() => this.props.history.push('/roster'));
+
 
     e.preventDefault();
   }
@@ -41,31 +41,37 @@ class Login extends Component {
   render() {
     return (
       <div className="login-page">
-        <div>
+        <div className="login-header">
           <h2>Login</h2>
         </div>
-        <form onSubmit={this.login}>
+        <form className="login-form" onSubmit={this.login}>
           <p>Email</p>
-          <input
-            id="email"
-            type="text"
-            name="email"
-            placeholder="Email"
-            onChange={this.handleInput}
-            required
-          />
+          <div>
+            <input
+              id="email"
+              type="text"
+              name="email"
+              placeholder="Email"
+              onChange={this.handleInput}
+              required
+            />
+            <i className="fas fa-envelope" />
+          </div>
           <p>Password</p>
-          <input
-            id="password"
-            type="password"
-            name="password"
-            placeholder="Password"
-            onChange={this.handleInput}
-            required
-          />
+          <div>
+            <input
+              id="password"
+              type="password"
+              name="password"
+              placeholder="Password"
+              onChange={this.handleInput}
+              required
+            />
+          </div>
           <button id="login" type="submit" value="Submit">
             Login
           </button>
+          <button type="reset" value="reset">Cancel</button>
         </form>
       </div>
     );

@@ -1,8 +1,23 @@
-.player-card {
-  background-color: #fff;
-  width: 20%;
-  border: 1px solid yellow; }
-  .player-card p {
-    font-size: 14px; }
+.roster-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.roster-card {
+  border: 1px solid #333;
+  height: 200px;
+  width: 150px;
+  background-color: #fff; }
+
+.roster-header {
+  padding-top: 10px;
+  border-bottom: 1px solid #333; }
+
+.roster-name {
+  font-size: 18px;
+  line-height: 30px; }
+
+.bold {
+  font-weight: strong; }
 
 /*# sourceMappingURL=Roster.css.map */

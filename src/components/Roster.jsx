@@ -6,7 +6,7 @@ import '../styles/css/Roster.css';
 const propTypes = {
   first: PropTypes.string.isRequired,
   last: PropTypes.string.isRequired,
-  rating: PropTypes.string.isRequired,
+  rating: PropTypes.number.isRequired,
   hand: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   delete: PropTypes.func.isRequired
@@ -16,11 +16,14 @@ function Roster(props) {
     <div className="roster-card">
       <div className="player-card">
         <div className="roster-header">
-          <p>{props.first} {props.last}</p>
+          <p className="roster-name">{props.first} {props.last}</p>
         </div>
-        <p>Rating: {props.rating}</p>
-        <p>{props.hand} Handed</p>
-        <button onClick={() => props.delete(props.id)}>Delete Player</button>
+        <i className="far fa-user" />
+        <div className="roster-footer">
+          <p><span className="bold">R</span>: {props.rating}</p>
+          <p><span className="bold">H</span>:{props.hand}</p>
+        </div>
+        <button className="delete" onClick={() => props.delete(props.id)}>Delete Player</button>
       </div>
     </div>
   );

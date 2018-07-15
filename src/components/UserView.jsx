@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Roster from './Roster';
 import { getPlayers, deletePlayer } from '../api';
+import '../styles/css/UserView.css';
 
 class UserView extends Component {
   constructor(props) {
@@ -41,12 +42,13 @@ class UserView extends Component {
       />
     ));
     return (
-      <div>
+      <div className="userview-page">
 
         <div>
-          <Link to="/players/new">Add Players</Link>
+          <Link to="/player/new">Add Players</Link>
           <div className="roster-box">
             <h2>Current Roster</h2>
+
             {this.state.players.length > 1 && (
               <div>
                 <p>Sort by:</p>
@@ -57,7 +59,7 @@ class UserView extends Component {
                 </select>
               </div>
             )}
-            {this.state.players.length >= 1 && <div>{team}</div>}
+            {this.state.players.length >= 1 && <div className="roster-cont"><div className="divider" />{team}</div>}
           </div>
         </div>
 

@@ -3,20 +3,29 @@
   height: 70px; }
 
 .login-page {
-  display: flex;
-  justify-content: center;
-  align-items: center; }
-
-.login-page {
-  flex-direction: column;
-  background-color: #fff;
+  border: 1px solid #fff;
   border-radius: 4px;
-  width: 80%;
+  width: 60%;
   height: 40%;
-  margin: auto; }
+  margin: 40px auto; }
+  .login-page h2 {
+    font-size: 20px;
+    color: #fff;
+    text-align: center; }
+
+.login-header {
+  background-color: #333;
+  padding: 10px; }
+
+.login-form {
+  width: 100%;
+  background-color: #fff; }
+  .login-form p {
+    font-size: 16px; }
 
 #login {
-  background-color: #ff7400;
+  background-color: #fff;
+  box-shadow: 2px 2px #ff7400;
   color: white; }
 
 /*# sourceMappingURL=Login.css.map */
