@@ -6,6 +6,7 @@ import Login from './Login';
 import Register from './Register';
 import UserView from './UserView';
 import MakePlayer from './MakePlayer';
+import { token } from '../api';
 
 import '../styles/css/App.css';
 
@@ -22,12 +23,13 @@ class App extends Component {
   holdUser(info) {
     this.setState({ user: info });
     localStorage.setItem('token', this.state.user.token);
+    console.log(this.state.user);
   }
 
   render() {
     return (
       <div className="App">
-        <Header />
+        <Header user={this.state.user} />
         <Switch>
           <Route exact path="/" render={() => <Home />} />
           <Route

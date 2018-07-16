@@ -3,6 +3,10 @@ export const user = {};
 export const players = [];
 export const token = localStorage.getItem('token');
 
+export const logout = () => {
+  localStorage.removeItem('token');
+};
+
 export const registerUser = ((first, last, email, pass, confirm) => fetch(`${baseUrl}api/user`, {
   method: 'post',
   headers: {

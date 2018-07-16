@@ -4,6 +4,7 @@
     width: $display-width;
     @extend %flex-row-center;
     flex-direction: column;
+    margin-top: 70px;
 }
 .pong-game{
     height: 50vh;
@@ -22,9 +23,13 @@
     border: 1px solid yellow;
     box-shadow: 2px 3px yellow;
     background-color: #fff;
-    color: #333;
-    
+    color: #333;  
 }
+.home-button:hover{
+    background-color: rgba(51, 51, 51, 0.836);
+    color: #fff;
+}
+
 .pong {
     background-color: #fff;
     opacity:0

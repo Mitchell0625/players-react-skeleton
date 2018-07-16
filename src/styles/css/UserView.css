@@ -1,34 +1,3 @@
-.roster-cont {
-  display: flex;
-  justify-content: center;
-  align-items: center; }
 
-.userview-page {
-  width: 80%;
-  border: 6px double #ff7400;
-  height: 100%;
-  margin: auto; }
-
-.roster-box {
-  border: 1px solid #fff;
-  height: 80%;
-  overflow: scroll; }
-  .roster-box h2 {
-    background-color: #333;
-    color: #fff;
-    font-size: 24px;
-    text-align: center;
-    border-bottom: 1px solid #fff; }
-
-.divider {
-  width: 2px;
-  border: 1px dashed #fff;
-  position: absolute;
-  height: 100%; }
-
-.roster-cont {
-  width: 100%;
-  position: relative;
-  height: 94%; }
 
 /*# sourceMappingURL=UserView.css.map */

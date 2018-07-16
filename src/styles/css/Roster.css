@@ -1,23 +1,39 @@
-.roster-footer {
+.roster-card, .roster-footer {
   display: flex;
   justify-content: center;
   align-items: center; }
 
 .roster-card {
+  margin: 10px;
   border: 1px solid #333;
-  height: 200px;
-  width: 150px;
-  background-color: #fff; }
+  box-shadow: 4px 6px 8px #333;
+  border-radius: 2px;
+  height: 250px;
+  width: 200px;
+  background-color: #fff;
+  flex-direction: column;
+  justify-content: space-between; }
 
 .roster-header {
   padding-top: 10px;
   border-bottom: 1px solid #333; }
 
 .roster-name {
-  font-size: 18px;
-  line-height: 30px; }
+  line-height: 30px;
+  text-transform: uppercase; }
+
+.circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%; }
+
+.roster-footer p {
+  padding: 10px; }
+
+.delete {
+  background-color: #ff400; }
 
 .bold {
-  font-weight: strong; }
+  font-weight: bolder; }
 
 /*# sourceMappingURL=Roster.css.map */
