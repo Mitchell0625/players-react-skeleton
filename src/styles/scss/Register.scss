@@ -1,0 +1,76 @@
+@import './utils.scss';
+
+.register-page {
+    height: 80%;
+    position: relative;
+    margin-top: 40px auto;
+    // @extend %flex-row-center;
+    // flex-direction: column;
+    
+
+.register{
+    display:flex;
+    flex-direction:column;
+    justify-content: space-between;
+    // align-items:center;
+    border: 1px solid #fff;
+    
+}
+
+}
+.register-header{
+    background-color: #333;
+    padding: 10px;
+    // width: 100%;
+
+    h2{
+    font-size: 20px;
+    color: #fff;
+    
+    text-align: center;
+}}
+.register-inputs-text {
+    padding: 5px;
+    margin-bottom: 2rem;
+    height: 30px;
+    width: 250px;
+    border: 1px solid lightgray;
+    padding-left: 10%;
+    font-size: 14px;
+    transition: 0.3s;
+    :focus {
+        border-color: $blue;
+        box-shadow: 0 0 8px 0 $blue;
+      }
+    
+}
+
+.register-form {
+    width: 100%; 
+    margin: 20px auto;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.register-form i {
+    position: absolute;
+    bottom: 12px;
+    left: 10px;
+    color: lightgray;
+    transition: 0.3s;
+  }
+  .register-form input:focus + i {
+    color: $blue;
+  }
+#register{
+    display: block;
+}
+
+@media (max-width: 767px){
+    .register-page{
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+
+    }
+}

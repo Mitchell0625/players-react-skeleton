@@ -2,6 +2,7 @@ $logo-font:'Pacifico', cursive;
 $text-font: 'Open Sans', sans-serif;
 $display-width: 100%;
 $orange: #ff7400;
+$blue: #517890;
 %large-button {
     width: 200px;
     height: 60px;
@@ -18,4 +19,9 @@ $orange: #ff7400;
     display: flex;
     justify-content:center;
     align-items: center;
+}
+
+%cancel{
+    padding: 10px 20px;
+    border-radius: 4px;
 }

@@ -3,6 +3,10 @@
   justify-content: center;
   align-items: center; }
 
+.logout {
+  padding: 10px 20px;
+  border-radius: 4px; }
+
 .header-container {
   padding: 1em;
   background-color: #ff7400;
@@ -21,5 +25,8 @@
   width: 50px;
   margin-left: -6px;
   margin-top: 5px; }
+
+.logout {
+  background-color: #fff; }
 
 /*# sourceMappingURL=Header.css.map */

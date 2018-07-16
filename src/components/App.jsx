@@ -23,7 +23,6 @@ class App extends Component {
   holdUser(info) {
     this.setState({ user: info });
     localStorage.setItem('token', this.state.user.token);
-    console.log(this.state.user);
   }
 
   render() {

@@ -6,6 +6,7 @@
     "start": "cross-env NODE_ENV=development parcel src/index.html -p 3000",
     "build": "cross-env NODE_ENV=production parcel build index.html --public-url",
     "e2e": "cypress open",
+    "unit": "jest",
     "lint:js": "eslint src/**/**/*.js src/**/**/*.jsx tests/**/**/*.js",
     "lint:style": "stylelint src/**/**/*.css src/**/**/*.scss"
   },
@@ -22,11 +23,13 @@
     "whatwg-fetch": "^2.0.4"
   },
   "devDependencies": {
+    "enzyme": "^3.3.0",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.9.1",
+    "jest": "^23.4.1",
     "prettier": "^1.13.5",
     "prettierrc": "0.0.0-5",
     "stylelint": "^9.3.0",

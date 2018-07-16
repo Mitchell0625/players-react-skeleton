@@ -16,7 +16,7 @@ function Header() {
       {token && (window.location.pathname === '/roster' || window.location.pathname === '/player/new') ?
         (<div className="sign-out">
           <Link to="/">
-            <button onClick={() => logout()}>Logout</button>
+            <button className="logout" onClick={() => logout()}>Logout</button>
           </Link>
          </div>) : ('')}
     </div>

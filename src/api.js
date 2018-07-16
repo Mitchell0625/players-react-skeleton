@@ -7,7 +7,7 @@ export const logout = () => {
   localStorage.removeItem('token');
 };
 
-export const registerUser = ((first, last, email, pass, confirm) => fetch(`${baseUrl}api/user`, {
+export const registerUser = (first, last, email, pass, confirm) => fetch(`${baseUrl}api/user`, {
   method: 'post',
   headers: {
     'Content-Type': 'application/json'
@@ -21,7 +21,7 @@ export const registerUser = ((first, last, email, pass, confirm) => fetch(`${bas
   })
 })
   .then(resp => resp.json())
-  .catch(err => console.log(err.message)));
+  .catch(err => console.log(err.message));
 
 export const loginUser = (email, pass) => fetch(`${baseUrl}api/login`, {
   method: 'post',

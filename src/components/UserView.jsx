@@ -43,15 +43,18 @@ class UserView extends Component {
 
   render() {
     const { players } = this.state;
+
     let team = (
-      <div className="not-logged">
+      <div className="roster-box">
         {token ? (
-          <p>Your roster is empty.</p>
+          <div className="more">
+            <p>Your roster is empty.</p>
+          </div>
         ) : (
-            <div>
+          <div>
               <p>Please login to view roster</p>
               <button
-                className="more"
+                className="login"
                 onClick={() =>
                   this.props.history.push('/login')}
               >

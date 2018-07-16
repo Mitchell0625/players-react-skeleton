@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { loginUser } from '../api';
-// import ErrorBoundary from './ErrorBoundary';
 import '../styles/css/Login.css';
 
 const propTypes = {
@@ -17,14 +16,21 @@ class Login extends Component {
 
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      message: true
     };
     this.login = this.login.bind(this);
     this.handleInput = this.handleInput.bind(this);
+    this.constraints = this.constraints.bind(this);
   }
 
   handleInput(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ [e.target.name]: e.target.value }, this.constraints());
+  }
+  constraints() {
+    if (this.state.email.split('').filter(x => x === '@').length !== 1) {
+      this.setState({ message: false });
+    }
   }
 
   login(e) {
@@ -32,47 +38,54 @@ class Login extends Component {
     loginUser(email, password)
       .then((resp) => {
         this.props.holdUser(resp);
-      }).then(() => this.props.history.push('/roster'));
+      }).then(() => this.props.history.push('/roster')).catch(err => console.log(err));
 
 
     e.preventDefault();
   }
 
+
   render() {
+    if (this.state.err) {
+      return <p>{this.state.errInfo}</p>;
+    }
     return (
       <div className="login-page">
-        <div className="login-header">
-          <h2>Login</h2>
+        <div className="login-container">
+          <div className="login-header">
+            <h2>Login</h2>
+          </div>
+          <form className="login-form" onSubmit={this.login}>
+            <p>Email</p>
+            <div>
+              <input
+                id="email"
+                type="email"
+                name="email"
+                placeholder="Email"
+                onChange={this.handleInput}
+                required
+              />
+              <i className="fas fa-envelope" />
+            </div>
+            <p>Password</p>
+            <div>
+              <input
+                id="password"
+                type="password"
+                name="password"
+                placeholder="Password"
+                onChange={this.handleInput}
+                onFocus={this.constraints}
+                required
+              />
+            </div>
+            <button id="login" type="submit" value="Submit" disabled={this.state.message}>
+              Login
+            </button>
+          </form>
         </div>
-        <form className="login-form" onSubmit={this.login}>
-          <p>Email</p>
-          <div>
-            <input
-              id="email"
-              type="text"
-              name="email"
-              placeholder="Email"
-              onChange={this.handleInput}
-              required
-            />
-            <i className="fas fa-envelope" />
-          </div>
-          <p>Password</p>
-          <div>
-            <input
-              id="password"
-              type="password"
-              name="password"
-              placeholder="Password"
-              onChange={this.handleInput}
-              required
-            />
-          </div>
-          <button id="login" type="submit" value="Submit">
-            Login
-          </button>
-          <button type="reset" value="reset">Cancel</button>
-        </form>
+        <button className="cancel" onClick={() => this.props.history.push('/')}>Cancel</button>
       </div>
     );
   }
