@@ -17,13 +17,12 @@ const propTypes = {
 function Roster(props) {
   return (
     <div className="roster-card">
-
+      <i className="far fa-user" id="small" />
       <div className="roster-header">
         <p className="roster-name">{props.first} {props.last}</p>
       </div>
-      <div className="circle">
-        <i className="far fa-user fa-5x" />
-      </div>
+      <i className="far fa-user" id="large" />
+
       <div className="roster-footer">
         <p><span className="bold">R</span>: {props.rating}</p>
         <p><span className="bold">H</span>:{props.hand}</p>

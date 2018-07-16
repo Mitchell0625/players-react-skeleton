@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { addPlayer } from '../api';
 import Roster from './Roster';
+import '../styles/css/MakePlayer.css';
 
 const propTypes = {
   history: PropTypes.shape({
@@ -24,7 +25,6 @@ class MakePlayer extends Component {
     this.handleInput = this.handleInput.bind(this);
     this.createPlayer = this.createPlayer.bind(this);
     this.constraints = this.constraints.bind(this);
-    // this.selection = this.selection.bind(this);
   }
 
   handleInput(e) {
@@ -35,7 +35,6 @@ class MakePlayer extends Component {
   constraints() {
     const { firstName, lastName } = this.state;
     if ((this.state.handedness !== '') && (firstName !== lastName)) {
-      console.log('hit');
       this.setState({ button: false });
     }
   }
@@ -52,51 +51,53 @@ class MakePlayer extends Component {
   }
 
   render() {
-    // console.log([this.state.handedness, this.state.button]);
     return (
-      <div>
-        <h2>Create New Player</h2>
-        <div className="player-form">
-          <form onSubmit={this.createPlayer}>
-            <p>First Name</p>
-            <input
-              id="firstName"
-              type="text"
-              name="firstName"
-              onChange={this.handleInput}
-            />
-            <p>Last Name</p>
-            <input
-              id="lastName"
-              type="text"
-              name="lastName"
-              onChange={this.handleInput}
-            />
-            <p>Rating <span>Enter a number</span></p>
-            <input
-              id="rating"
-              type="number"
-              name="rating"
-              onChange={this.handleInput}
-            />
-            <p>Handedness</p>
-            <select
-              name="handedness"
-              id="handedness"
-              value={this.state.handedness}
-              onChange={this.handleInput}
-            >
-              <option value="" />
-              <option value="left">Left</option>
-              <option value="right">Right</option>
-            </select>
-            <button id="create" type="submit" value="Submit" disabled={this.state.button}>
-              Create
-            </button>
-            <button type="reset" value="Reset">
-              Cancel
-            </button>
-          </form>
+      <div className="make-player-page">
+        <div className="make-player-container">
+          <h2>Create New Player</h2>
+          <div className="player-form">
+            <form onSubmit={this.createPlayer}>
+
+              <p>First Name</p>
+              <input
+                id="firstName"
+                type="text"
+                name="firstName"
+                onChange={this.handleInput}
+              />
+              <p>Last Name</p>
+              <input
+                id="lastName"
+                type="text"
+                name="lastName"
+                onChange={this.handleInput}
+              />
+              <p>Rating <span>Enter a number</span></p>
+              <input
+                id="rating"
+                type="number"
+                name="rating"
+                onChange={this.handleInput}
+              />
+              <p>Handedness</p>
+              <select
+                name="handedness"
+                id="handedness"
+                value={this.state.handedness}
+                onChange={this.handleInput}
+              >
+                <option value="" />
+                <option value="left">Left</option>
+                <option value="right">Right</option>
+              </select>
+              <button id="create" type="submit" value="Submit" disabled={this.state.button}>
+                Create
+              </button>
+              <button type="reset" value="Reset">
+                Cancel
+              </button>
+            </form>
+          </div>
         </div>
         <div className="player-card">
           <Roster first={this.state.firstName} last={this.state.lastName} rating={this.state.rating} hand={this.state.handedness} id={this.state.id} />

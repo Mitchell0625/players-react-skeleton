@@ -3,42 +3,51 @@
 .login-page{
    @extend %flex-row-center;
    flex-direction: column;
-    width: 100%;
-  
-    h2 {
-        font-size: 20px;
-        color: #fff;
-        text-align: center;
+    width: 100%; 
 
-    }
 }
-
 
 .login-container {
     border: 1px solid #fff;
     border-radius: 4px;
-    width: 60%;
-    // height: 40%;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
     margin: 40px auto;
+    
 }
 .login-header {
     background-color: #333;
-    padding: 10px; 
+    padding: 10px;
+    h2 {
+        font-size: 20px;
+        color: #fff;
+        text-align: center;
+    } 
 }
 .login-form{
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+   margin:20px;
     p{
         font-size: 16px;
     }
 }
-
-.login-form input {
-    padding: 5px;
+.login-inputs{
+    position: relative;
+    width: 100%;
+   i{
+    position: absolute;
+    top: 12%;
+    left: 2%;
+   }
+   input {
+    background-color: #fff;
     margin-bottom: 2rem;
     height: 30px;
-    width: 250px;
-    border: 1px solid lightgray;
-    padding-left: 10%;
+    width: 100%;
+    border: 1px solid #333;
+    padding-left: 12%;
     font-size: 14px;
     transition: 0.3s;
     :focus {
@@ -46,16 +55,21 @@
         box-shadow: 0 0 8px 0 $blue;
       }
 }
-.login-form input:invalid:not(:focus){
+}
+
+.login-inputs input:invalid:not(:focus){
     outline: 1px solid #f00;
+    border:1px solid #f00;
 }
 
 #login {
-    @extend %small-button;
+   padding: 15px 65px;
     background-color:#fff;
     box-shadow: 2px 2px $orange;
     color: #333;
     border-radius: 4px;
+    align-self: center;
+    box-shadow: 2px 2px yellow;
     :hover {
         background-color: rgba(51, 51, 51, 0.836);
         color: #fff;
@@ -64,4 +78,14 @@
 
 .cancel {
     @extend %cancel;
+    background-color: lightgray;
+}
+
+@media(max-width: 767px){
+    .login-container {
+        width: 100%;
+    }
+    .login-inputs input {
+        padding-left:13%;
+    }
 }

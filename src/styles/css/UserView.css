@@ -1,3 +1,60 @@
+.userview-button {
+  padding: 10px 20px;
+  border-radius: 4px; }
 
+.userview-page {
+  width: 80%;
+  border: 6px double #ff7400;
+  margin-top: 44px;
+  display: flex;
+  justify-content: space-between; }
+
+.roster-box {
+  flex-grow: 6;
+  border: 1px solid #fff;
+  height: 80%;
+  overflow: scroll; }
+  .roster-box h2 {
+    background-color: #333;
+    color: #fff;
+    font-size: 24px;
+    text-align: center;
+    border-bottom: 1px solid #fff; }
+
+.divider {
+  width: 2px;
+  border: 1px dashed #fff;
+  position: absolute;
+  height: 100%;
+  z-index: -1; }
+
+.roster-cont {
+  width: 100%;
+  position: relative;
+  height: 94%;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; }
+
+.userview-button {
+  background-color: #fff;
+  margin-left: 30px;
+  height: 50px;
+  flex-grow: 1; }
+
+@media (max-width: 767px) {
+  .userview-page {
+    flex-direction: column-reverse;
+    width: 100%;
+    justify-content: space-around; }
+
+  .roster-cont {
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%; }
+
+  .divider {
+    display: none; } }
 
 /*# sourceMappingURL=UserView.css.map */

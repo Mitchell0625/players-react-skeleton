@@ -29,4 +29,18 @@
 .logout {
   background-color: #fff; }
 
+@media (max-width: 767px) {
+  .header-container {
+    padding: 0; }
+
+  .header-h1 {
+    font-size: 30px;
+    letter-spacing: 1px; }
+
+  .header-img {
+    width: 30px; }
+
+  .logout {
+    padding: 5px; } }
+
 /*# sourceMappingURL=Header.css.map */

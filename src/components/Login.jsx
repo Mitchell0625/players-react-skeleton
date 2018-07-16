@@ -57,7 +57,8 @@ class Login extends Component {
           </div>
           <form className="login-form" onSubmit={this.login}>
             <p>Email</p>
-            <div>
+            <div className="login-inputs">
+              <i className="fas fa-envelope" />
               <input
                 id="email"
                 type="email"
@@ -66,10 +67,11 @@ class Login extends Component {
                 onChange={this.handleInput}
                 required
               />
-              <i className="fas fa-envelope" />
+
             </div>
             <p>Password</p>
-            <div>
+            <div className="login-inputs">
+              <i className="fas fa-lock" />
               <input
                 id="password"
                 type="password"
@@ -84,6 +86,7 @@ class Login extends Component {
               Login
             </button>
           </form>
+
         </div>
         <button className="cancel" onClick={() => this.props.history.push('/')}>Cancel</button>
       </div>

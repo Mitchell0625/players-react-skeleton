@@ -96,9 +96,15 @@ class UserView extends Component {
           <div className="roster-cont"><div className="divider" />{team}</div>
         </div>
         {this.state.players && (
-          <div className="userview-button">
-            <Link to="/player/new">Add Players</Link>
-          </div>)}
+
+          <button
+            className="userview-button"
+            onClick={() =>
+              this.props.history.push('/player/new')}
+          >Add Players
+          </button>
+        )
+        }
 
       </div>
     );
