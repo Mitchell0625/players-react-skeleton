@@ -10,7 +10,8 @@
   border-radius: 2px;
   height: 200px;
   width: 200px;
-  background-color: white;
+  background-color: #333333;
+  color: white;
   flex-direction: column;
   justify-content: space-between; }
   .roster-card #large {
@@ -21,7 +22,7 @@
 
 .roster-header {
   padding-top: 10px;
-  border-bottom: 1px solid #333333;
+  border-bottom: 1px solid white;
   width: 100%;
   text-align: center; }
 
@@ -29,24 +30,34 @@
   line-height: 30px;
   text-transform: uppercase; }
 
-.roster-footer p {
-  padding: 10px; }
+.roster-footer {
+  width: 100%; }
+  .roster-footer p {
+    padding: 10px; }
 
 .delete {
-  background-color: red;
-  margin-bottom: 10px;
-  padding: 2px 5px;
-  border-radius: 4px; }
+  font-size: 44px;
+  outline: none;
+  border: none;
+  background: transparent;
+  color: yellow; }
 
 .bold {
   font-weight: bolder; }
 
 @media (max-width: 767px) {
+  .delete {
+    font-size: 30px;
+    cursor: pointer; }
+
   .roster-card {
     flex-direction: row;
     justify-content: space-between;
     height: 50px;
-    margin: 3px 0; }
+    margin: 3px 0;
+    box-shadow: 0 2px 3px white;
+    padding: 0 15px;
+    font-size: 12px; }
 
   #small {
     font-size: 20px; }

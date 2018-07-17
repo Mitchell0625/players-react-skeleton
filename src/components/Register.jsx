@@ -23,8 +23,8 @@ class Register extends Component {
       confirmPassword: '',
       message: true,
       locked: false,
-      errorInfo: '',
-      error: false
+      err: '',
+      errHappen: false
     };
     this.handleInput = this.handleInput.bind(this);
     this.confirmation = this.confirmation.bind(this);
@@ -54,15 +54,24 @@ class Register extends Component {
     } = this.state;
 
     registerUser(firstName, lastName, email, password, confirmPassword)
-      .then(resp => this.props.holdUser(resp))
-      .then(() => this.props.history.push('/roster'))
-      .catch(err => console.log(err.message));
+      .then((resp) => {
+        if (resp.success) {
+          this.props.holdUser(resp);
+          this.props.history.push('/roster');
+        } else {
+          this.setState({ err: resp.error.message, errHappen: true });
+        }
+      })
+      .catch((err) => {
+        this.setState({ err: err.error.message, errHappen: true });
+      });
+
     e.preventDefault();
   }
   render() {
     return (
       <div className="register-page">
-        {this.state.error && <p>{this.state.errorInfo}</p>}
+        {this.state.errHappen && <div className="error">{this.state.err}</div>}
         <div className="register-container">
           <div className="register-header">
             <h2>Register</h2>
@@ -106,7 +115,11 @@ class Register extends Component {
             </div>
             <div className="register-inputs">
               <p>Password</p>
-              {!this.state.locked ? (<i className="fas fa-lock-open" />) : (<i className="fas fa-lock" />)}
+              {!this.state.locked ? (
+                <i className="fas fa-lock-open" />
+              ) : (
+                <i className="fas fa-lock" />
+              )}
               <input
                 id="password"
                 className="register-inputs-text"
@@ -118,7 +131,11 @@ class Register extends Component {
             </div>
             <div className="register-inputs">
               <p>Confirm Password</p>
-              {!this.state.locked ? (<i className="fas fa-lock-open" />) : (<i className="fas fa-lock" />)}
+              {!this.state.locked ? (
+                <i className="fas fa-lock-open" />
+              ) : (
+                <i className="fas fa-lock" />
+              )}
               <input
                 id="confirmPassword"
                 className="register-inputs-text"
@@ -132,8 +149,8 @@ class Register extends Component {
             {this.state.message && this.state.password ? (
               <p>Passwords do not match</p>
             ) : (
-                ''
-              )}
+              ''
+            )}
             <button
               id="register"
               type="submit"

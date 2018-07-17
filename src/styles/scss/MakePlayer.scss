@@ -4,12 +4,21 @@
   @extend %flex-row-center;
 
   flex-direction: column;
-  width: 40%;
   margin: 0 auto;
 }
 
 .make-player-flex {
+  display: flex;
   flex-direction: row;
+  width: 100%;
+}
+
+.error {
+  float: right;
+  border: 1px solid #333333;
+  background-color: #333333;
+  color: red;
+  padding: 5px;
 }
 
 .make-player-container {
@@ -33,10 +42,16 @@
   font-style: italic;
 }
 
+.player-form form {
+  width: 50%;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+}
+
 .player-form {
   display: flex;
   flex-direction: column;
-  margin: 20px;
 
   p {
     font-size: 16px;
@@ -72,6 +87,20 @@
   margin-top: 20px;
 }
 
+#create {
+  padding: 15px 55px;
+  background-color: white;
+  color: #333333;
+  border-radius: 4px;
+  align-self: center;
+  box-shadow: 2px 2px yellow;
+
+  :hover {
+    background-color: rgba(51, 51, 51, 0.836);
+    color: white;
+  }
+}
+
 @media ( max-width: 767px ) {
 
   .make-player-page,
@@ -81,5 +110,9 @@
 
   .make-player-flex {
     flex-direction: column;
+  }
+
+  #create {
+    padding: 15px 30px;
   }
 }

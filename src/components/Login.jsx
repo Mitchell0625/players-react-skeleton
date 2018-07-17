@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { loginUser } from '../api';
 import '../styles/css/Login.css';
 
@@ -17,7 +17,9 @@ class Login extends Component {
     this.state = {
       email: '',
       password: '',
-      message: true
+      message: true,
+      err: '',
+      errHappen: false
     };
     this.login = this.login.bind(this);
     this.handleInput = this.handleInput.bind(this);
@@ -37,20 +39,25 @@ class Login extends Component {
     const { email, password } = this.state;
     loginUser(email, password)
       .then((resp) => {
-        this.props.holdUser(resp);
-      }).then(() => this.props.history.push('/roster')).catch(err => console.log(err));
-
+        if (resp.success) {
+          this.props.holdUser(resp);
+          this.props.history.push('/roster');
+        } else {
+          this.setState({ err: resp.error.message, errHappen: true });
+        }
+      })
+      .catch((err) => {
+        this.setState({ err: err.error.message, errHappen: true });
+      });
 
     e.preventDefault();
   }
 
-
   render() {
-    if (this.state.err) {
-      return <p>{this.state.errInfo}</p>;
-    }
     return (
       <div className="login-page">
+        {this.state.errHappen && <div className="error">{this.state.err}</div>}
+
         <div className="login-container">
           <div className="login-header">
             <h2>Login</h2>
@@ -67,7 +74,6 @@ class Login extends Component {
                 onChange={this.handleInput}
                 required
               />
-
             </div>
             <p>Password</p>
             <div className="login-inputs">
@@ -82,13 +88,17 @@ class Login extends Component {
                 required
               />
             </div>
-            <button id="login" type="submit" value="Submit" disabled={this.state.message}>
+            <button
+              id="login"
+              type="submit"
+              value="Submit"
+              disabled={this.state.message}
+            >
               Login
             </button>
           </form>
-
         </div>
-        <button className="cancel" onClick={() => this.props.history.push('/')}>Cancel</button>
+        <p className="no-account">Don&#39;t have an account? <Link to="/register">Register</Link></p>
       </div>
     );
   }

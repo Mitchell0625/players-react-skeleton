@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import paddle from '../images/ping-pong.png';
 import '../styles/css/Header.css';
-import { token, logout } from '../api';
+import { logout, logged } from '../api';
 
 
 function Header() {
@@ -12,12 +12,13 @@ function Header() {
         <h1 className=" header-h1">Pongtastic</h1>
         <img className="header-img" src={paddle} alt="ping pong paddle" />
       </div>
-      {token && (window.location.pathname === '/roster' || window.location.pathname === '/player/new') ?
-        (<div className="sign-out">
+      {logged() && (window.location.pathname === '/roster' || window.location.pathname === '/player/new') ? (
+        <div className="sign-out">
           <Link to="/">
             <button className="logout" onClick={() => logout()}>Logout</button>
           </Link>
-         </div>) : ('')}
+        </div>
+      ) : ('')}
     </div>
   );
 }

@@ -2,20 +2,34 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Roster from './Roster';
-import { getPlayers, deletePlayer, token } from '../api';
+import { getPlayers, deletePlayer, logged } from '../api';
 import '../styles/css/UserView.css';
+
+const defaultProps = {
+  user: {}
+};
+
 
 const propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired
-  }).isRequired
+  }).isRequired,
+  user: PropTypes.shape({
+    user: PropTypes.shape({
+      id: PropTypes.id
+    })
+  })
 };
+
 class UserView extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      players: []
+      players: [],
+      err: '',
+      errHappen: false
+
     };
     this.deleteAPlayer = this.deleteAPlayer.bind(this);
   }
@@ -23,40 +37,52 @@ class UserView extends Component {
   componentDidMount() {
     getPlayers()
       .then((data) => {
-        this.setState({ players: data.players });
+        if (data.success) {
+          this.setState({ players: data.players });
+        } else {
+          this.setState({ err: data.error.message, errHappen: true });
+        }
       })
-      .catch(err => console.log(err.message));
+      .catch((err) => {
+        this.setState({ err: err.error.message, errHappen: true });
+      });
   }
 
   deleteAPlayer(id) {
     deletePlayer(id)
-      .then(() => {
-        const newArr = this.state.players.slice();
-        const currentList = newArr.filter(e => e.id !== id);
-        this.setState({ players: currentList });
+      .then((resp) => {
+        if (resp.success) {
+          const newArr = this.state.players.slice();
+          const currentList = newArr.filter(e => e.id !== id);
+          this.setState({ players: currentList });
+        } else {
+          this.setState({ err: resp.error.message, errHappen: true });
+        }
       })
-      .catch(err => console.log(err));
+      .catch((err) => {
+        this.setState({ err: err.error.message, errHappen: true });
+      });
   }
 
   render() {
     const { players } = this.state;
     let team = (
       <div className="empty">
-        {token ? (
+        {(this.props.user || logged()) ? (
           <div>
             <p>Your roster is empty.</p>
           </div>
         ) : (
-          <div>
-            <p>Please login to view roster</p>
-            <button
-              className="login"
-              onClick={() => this.props.history.push('/login')}
-            >
-              Login now
-            </button>
-          </div>
-        )}
+            <div>
+              <p>Please login to view roster</p>
+              <button
+                className="login"
+                onClick={() => this.props.history.push('/login')}
+              >
+                Login now
+              </button>
+            </div>)
+        }
       </div>
     );
 
@@ -78,26 +104,11 @@ class UserView extends Component {
 
     return (
       <div className="userview-page">
+        {this.state.errHappen && <div className="error">{this.state.err}</div>}
         <div className="roster-box">
           <h2>Roster</h2>
           <div className="roster-selections">
-            {this.state.players && this.state.players.length > 1 ? (
-              <div className="sort">
-                <p>Sort by:</p>
-                {/* <select value="">
-                  <option value="rating">Rating</option>
-                </select> */}
-                <div className="sort" id="last">
-                  Last Name
-                </div>
-                <div className="sort" id="rating">
-                  Rating
-                </div>
-              </div>
-            ) : (
-              ''
-            )}
-            {token && (
+            {logged() && (
               <button
                 className="userview-button"
                 onClick={() => this.props.history.push('/player/new')}
@@ -107,7 +118,7 @@ class UserView extends Component {
             )}
           </div>
           <div className="roster-cont">
-            {this.state.players && <div className="divider" />}
+            {this.state.players.length > 1 && <div className="divider" />}
             {team}
           </div>
         </div>
@@ -116,5 +127,6 @@ class UserView extends Component {
   }
 }
 
+UserView.defaultProps = defaultProps;
 UserView.propTypes = propTypes;
 export default withRouter(UserView);

@@ -19,15 +19,15 @@ function Roster(props) {
     <div className="roster-card">
       <i className="far fa-user" id="small" />
       <div className="roster-header">
-        <p className="roster-name"> {props.last}, {props.first}</p>
+        <p className="roster-name">{props.first} {props.last}</p>
       </div>
       <i className="far fa-user" id="large" />
 
       <div className="roster-footer">
         <p><span className="bold">R</span>: {props.rating}</p>
-        <p><span className="bold">H</span>:{props.hand}</p>
+        <p><span className="bold">H</span>: {props.hand}</p>
       </div>
-      {window.location.pathname === '/roster' && <button className="delete" onClick={() => props.delete(props.id)}>Delete</button>}
+      {window.location.pathname === '/roster' && <button className="delete" onClick={() => props.delete(props.id)}>&times;</button>}
 
 
     </div>

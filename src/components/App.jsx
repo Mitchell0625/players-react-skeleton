@@ -6,7 +6,6 @@ import Login from './Login';
 import Register from './Register';
 import UserView from './UserView';
 import MakePlayer from './MakePlayer';
-import { token } from '../api';
 
 import '../styles/css/App.css';
 
@@ -27,7 +26,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(token);
     return (
       <div className="App">
         <Header user={this.state.user} />

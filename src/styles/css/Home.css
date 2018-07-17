@@ -50,26 +50,22 @@
   border: 2px dashed white;
   position: absolute;
   left: 50%;
-  animation: net 2.5s ease-in-out; }
+  opacity: 1;
+  animation: net 4s ease-out; }
 
 .ball {
   width: 27px;
   height: 27px;
   border-radius: 50%;
   position: relative;
-  animation: ball 2.5s ease-out; }
+  animation: ball 2.7s linear; }
 
 .left {
-  animation: left-paddle 2.5s linear; }
+  animation: left-paddle 2.7s linear; }
 
 .right {
-  animation: right-paddle 2.5s linear; }
+  animation: right-paddle 2.7s linear; }
 
-@keyframes net {
-  from {
-    opacity: 1; }
-  to {
-    opacity: 1; } }
 @keyframes left-paddle {
   0% {
     bottom: 30%;

@@ -33,7 +33,6 @@
 
   i {
     position: absolute;
-    top: 12%;
     left: 2%;
     top: 39%;
   }
@@ -53,6 +52,21 @@
       box-shadow: 0 0 8px 0 $blue;
     }
   }
+}
+
+.register-page a {
+  @extend %cancel;
+
+  background-color: lightgray;
+  text-decoration: none;
+  color: #333333;
+}
+
+.error {
+  border: 1px solid #333333;
+  background-color: #333333;
+  color: red;
+  padding: 5px;
 }
 
 .register-form {

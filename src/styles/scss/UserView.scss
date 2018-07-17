@@ -6,6 +6,14 @@
   margin: 44px auto;
 }
 
+.error {
+  float: right;
+  border: 1px solid #333333;
+  background-color: #333333;
+  color: red;
+  padding: 5px;
+}
+
 .roster-selections {
   display: flex;
   width: 100%;
@@ -15,8 +23,6 @@
 
 .roster-box {
   border: 1px solid white;
-  height: 80%;
-  overflow: scroll;
 
   h2 {
     background-color: #333333;
@@ -37,20 +43,22 @@
 
 .roster-cont {
   width: 100%;
+  height: 60%;
+  padding: 10px;
   position: relative;
   z-index: 1;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   flex-wrap: wrap;
+  overflow: scroll;
 }
 
 .userview-button {
   @extend %cancel;
 
   background-color: white;
-  margin-left: 30px;
-  height: 50px;
+  font-size: 14px;
 }
 
 .empty {

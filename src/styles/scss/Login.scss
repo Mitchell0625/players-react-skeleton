@@ -16,6 +16,25 @@
   margin: 40px auto;
 }
 
+.no-account {
+  margin: 20px;
+}
+
+.login-page a {
+  @extend %cancel;
+  background-color: lightgray;
+  text-decoration: none;
+  color: #333333;
+  
+}
+
+.error {
+  border: 1px solid #333333;
+  background-color: #333333;
+  color: red;
+  padding: 5px;
+}
+
 .login-header {
   background-color: #333333;
   padding: 10px;

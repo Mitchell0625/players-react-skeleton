@@ -19,7 +19,9 @@ class MakePlayer extends Component {
       rating: 0,
       handedness: '',
       id: '',
-      button: true
+      button: true,
+      err: '',
+      errHappen: false
     };
 
     this.handleInput = this.handleInput.bind(this);
@@ -34,25 +36,34 @@ class MakePlayer extends Component {
   }
   constraints() {
     const { firstName, lastName } = this.state;
-    if ((this.state.handedness !== '') && (firstName !== lastName)) {
+    if (this.state.handedness !== '' && firstName !== lastName) {
       this.setState({ button: false });
     }
   }
-
 
   createPlayer(e) {
     const {
       firstName, lastName, rating, handedness
     } = this.state;
 
-    addPlayer(firstName, lastName, rating, handedness).then(() => this.props.history.push('/roster'))
-      .catch(err => console.log(err));
+    addPlayer(firstName, lastName, Number(rating), handedness)
+      .then((resp) => {
+        if (resp.success) {
+          this.props.history.push('/roster');
+        } else {
+          this.setState({ err: resp.error.message, errHappen: true });
+        }
+      })
+      .catch((err) => {
+        this.setState({ err: err.error.message, errHappen: true });
+      });
     e.preventDefault();
   }
 
   render() {
     return (
       <div className="make-player-page">
+        {this.state.errHappen && <div className="error">{this.state.err}</div>}
         <div className="make-player-flex">
           <div className="make-player-container">
             <h2>Create New Player</h2>
@@ -72,7 +83,9 @@ class MakePlayer extends Component {
                   name="lastName"
                   onChange={this.handleInput}
                 />
-                <p>Rating <span className="italic">(number)</span></p>
+                <p>
+                  Rating <span className="italic">(number)</span>
+                </p>
                 <input
                   id="rating"
                   type="number"
@@ -90,22 +103,29 @@ class MakePlayer extends Component {
                   <option value="left">Left</option>
                   <option value="right">Right</option>
                 </select>
-                <button id="create" type="submit" value="Submit" disabled={this.state.button}>
+                <button
+                  id="create"
+                  type="submit"
+                  value="Submit"
+                  disabled={this.state.button}
+                >
                   Create
                 </button>
               </form>
             </div>
           </div>
           <div className="player-card">
-            <Roster first={this.state.firstName} last={this.state.lastName} rating={this.state.rating} hand={this.state.handedness} id={this.state.id} />
+            <Roster
+              first={this.state.firstName}
+              last={this.state.lastName}
+              rating={Number(this.state.rating)}
+              hand={this.state.handedness}
+              id={this.state.id}
+            />
           </div>
         </div>
-        <button className="reset">
-          Cancel
-        </button>
+        <button className="reset">Cancel</button>
       </div>
-
-
     );
   }
 }
