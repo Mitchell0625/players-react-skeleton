@@ -17,6 +17,7 @@ class App extends Component {
     this.state = {
       user: {}
     };
+
     this.holdUser = this.holdUser.bind(this);
   }
 
@@ -26,6 +27,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(token);
     return (
       <div className="App">
         <Header user={this.state.user} />

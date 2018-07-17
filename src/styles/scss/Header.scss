@@ -1,36 +1,37 @@
 @import './utils.scss';
 
-.header-container{
-    padding: 1em;
-    @extend %flex-row-center;
-    background-color: $orange;
-    justify-content: space-between;
-    width: $display-width;
-    height: 10vh; 
-    margin-bottom: 10px;
-    .logo{
+.header-container {
+  padding: 1em;
+  
+  @extend %flex-row-center;
+  background-color: $orange;
+  justify-content: space-between;
+  width: $display-width;
+  height: 10vh; 
+  margin-bottom: 10px;
+  .logo {
         @extend %flex-row-center;
     }
 }
-.header-h1{
+.header-h1 {
     font-family: $logo-font;
-    color: #fff;
+    color: white;
     font-size: 40px;
  letter-spacing: 2px;
 }
 
-.header-img{
+.header-img {
     width: 50px;
     margin-left: -6px;
     margin-top: 5px;
 }
 
-.logout{
+.logout {
     @extend %cancel;
-    background-color: #fff;
+    background-color: white;
 }
 
-@media (max-width: 767px){
+@media (max-width: 767px) {
     .header-container {
         padding: 0;
     }
@@ -38,7 +39,7 @@
         font-size: 30px;
         letter-spacing: 1px;
     } 
-    .header-img{
+    .header-img {
         width: 30px;
     }
     .logout {

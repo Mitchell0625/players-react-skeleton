@@ -3,23 +3,34 @@
   justify-content: center;
   align-items: center; }
 
+.reset {
+  padding: 10px 20px;
+  border-radius: 4px; }
+
 .make-player-page {
   flex-direction: column;
-  width: 100%; }
+  width: 40%;
+  margin: 0 auto; }
+
+.make-player-flex {
+  flex-direction: row; }
 
 .make-player-container {
-  border: 1px solid #fff;
+  border: 1px solid white;
   border-radius: 4px;
-  width: 40%;
   display: flex;
   flex-direction: column;
-  margin: 40px auto; }
+  margin: 40px auto;
+  width: 100%; }
   .make-player-container h2 {
-    background-color: #333;
+    background-color: #333333;
     padding: 10px;
     font-size: 20px;
-    color: #fff;
+    color: white;
     text-align: center; }
+
+.italic {
+  font-style: italic; }
 
 .player-form {
   display: flex;
@@ -27,5 +38,35 @@
   margin: 20px; }
   .player-form p {
     font-size: 16px; }
+  .player-form input,
+  .player-form select {
+    background-color: white;
+    margin-bottom: 2rem;
+    height: 30px;
+    width: 100%;
+    border: 1px solid #333333;
+    padding-left: 12%;
+    font-size: 14px;
+    transition: 0.3s; }
+    .player-form input :focus,
+    .player-form select :focus {
+      border-color: #517890;
+      box-shadow: 0 0 8px 0 #517890; }
+
+.player-card {
+  margin-top: 30px;
+  margin-left: 50px; }
+
+.reset {
+  background-color: lightgray;
+  margin-top: 20px; }
+
+@media (max-width: 767px) {
+  .make-player-page,
+  .make-player-flex {
+    width: 100%; }
+
+  .make-player-flex {
+    flex-direction: column; } }
 
 /*# sourceMappingURL=MakePlayer.css.map */

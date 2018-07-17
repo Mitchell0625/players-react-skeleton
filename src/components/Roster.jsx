@@ -19,7 +19,7 @@ function Roster(props) {
     <div className="roster-card">
       <i className="far fa-user" id="small" />
       <div className="roster-header">
-        <p className="roster-name">{props.first} {props.last}</p>
+        <p className="roster-name"> {props.last}, {props.first}</p>
       </div>
       <i className="far fa-user" id="large" />
 
@@ -27,7 +27,7 @@ function Roster(props) {
         <p><span className="bold">R</span>: {props.rating}</p>
         <p><span className="bold">H</span>:{props.hand}</p>
       </div>
-      {window.location.pathname === '/roster' && <button className="delete" onClick={() => props.delete(props.id)}>Delete Player</button>}
+      {window.location.pathname === '/roster' && <button className="delete" onClick={() => props.delete(props.id)}>Delete</button>}
 
 
     </div>

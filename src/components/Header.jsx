@@ -1,5 +1,4 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import paddle from '../images/ping-pong.png';
 import '../styles/css/Header.css';
@@ -22,7 +21,6 @@ function Header() {
     </div>
   );
 }
-// Header.defaultProps = defaultProps;
-// Header.propTypes = propTypes;
+
 
 export default Header;

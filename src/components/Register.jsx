@@ -53,7 +53,7 @@ class Register extends Component {
       confirmPassword
     } = this.state;
 
-    registerUser(firstName, lastName, email, password, confirmPassword).catch(err => console.log(err))
+    registerUser(firstName, lastName, email, password, confirmPassword)
       .then(resp => this.props.holdUser(resp))
       .then(() => this.props.history.push('/roster'))
       .catch(err => console.log(err.message));
@@ -63,64 +63,71 @@ class Register extends Component {
     return (
       <div className="register-page">
         {this.state.error && <p>{this.state.errorInfo}</p>}
-        <div className="register">
+        <div className="register-container">
           <div className="register-header">
             <h2>Register</h2>
           </div>
           <form className="register-form" onSubmit={this.createUser}>
-            <p>First Name</p>
-            <i className="fas fa-user" />
-            <input
-              id="firstName"
-              className="register-inputs-text"
-              type="text"
-              name="firstName"
-              placeholder="First Name"
-              onChange={this.handleInput}
-            />
-            <p>Last Name</p>
-            <i className="fas fa-user" />
-            <input
-              id="lastName"
-              className="register-inputs-text"
-              type="text"
-              name="lastName"
-              placeholder="Last Name"
-              onChange={this.handleInput}
-            />
-            <p>Email</p>
-            <i className="fas fa-envelope" />
-            <input
-              id="email"
-              className="register-inputs-text"
-              type="email"
-              name="email"
-              placeholder="Email"
-              onChange={this.handleInput}
-            />
-
-            <p>Password</p>
-            <i className="fas fa-lock-open" />
-            <input
-              id="password"
-              className="register-inputs-text"
-              type="password"
-              name="password"
-              placeholder="Enter Password"
-              onChange={this.handleInput}
-            />
-
-            <p>Confirm Password</p>
-            <i className="fas fa-lock-open" />
-            <i className="fas fa-lock" />
-            <input
-              id="confirmPassword"
-              className="register-inputs-text"
-              type="password"
-              name="confirmPassword"
-              placeholder="Confirm Password"
-              onChange={this.handleInput}
-            />
+            <div className="register-inputs">
+              <p>First Name</p>
+              <i className="fas fa-user" />
+              <input
+                id="firstName"
+                className="register-inputs-text"
+                type="text"
+                name="firstName"
+                placeholder="First Name"
+                onChange={this.handleInput}
+              />
+            </div>
+            <div className="register-inputs">
+              <p>Last Name</p>
+              <i className="fas fa-user" />
+              <input
+                id="lastName"
+                className="register-inputs-text"
+                type="text"
+                name="lastName"
+                placeholder="Last Name"
+                onChange={this.handleInput}
+              />
+            </div>
+            <div className="register-inputs">
+              <p>Email</p>
+              <i className="fas fa-envelope" />
+              <input
+                id="email"
+                className="register-inputs-text"
+                type="email"
+                name="email"
+                placeholder="Email"
+                onChange={this.handleInput}
+              />
+            </div>
+            <div className="register-inputs">
+              <p>Password</p>
+              {!this.state.locked ? (<i className="fas fa-lock-open" />) : (<i className="fas fa-lock" />)}
+              <input
+                id="password"
+                className="register-inputs-text"
+                type="password"
+                name="password"
+                placeholder="Enter Password"
+                onChange={this.handleInput}
+              />
+            </div>
+            <div className="register-inputs">
+              <p>Confirm Password</p>
+              {!this.state.locked ? (<i className="fas fa-lock-open" />) : (<i className="fas fa-lock" />)}
+              <input
+                id="confirmPassword"
+                className="register-inputs-text"
+                type="password"
+                name="confirmPassword"
+                placeholder="Confirm Password"
+                onChange={this.handleInput}
+              />
+            </div>
 
             {this.state.message && this.state.password ? (
               <p>Passwords do not match</p>

@@ -16,7 +16,7 @@ class MakePlayer extends Component {
     this.state = {
       firstName: '',
       lastName: '',
-      rating: '',
+      rating: 0,
       handedness: '',
       id: '',
       button: true
@@ -45,63 +45,64 @@ class MakePlayer extends Component {
       firstName, lastName, rating, handedness
     } = this.state;
 
-    addPlayer(firstName, lastName, rating, handedness).then(() =>
-      this.props.history.push('/roster'));
+    addPlayer(firstName, lastName, rating, handedness).then(() => this.props.history.push('/roster'))
+      .catch(err => console.log(err));
     e.preventDefault();
   }
 
   render() {
     return (
       <div className="make-player-page">
-        <div className="make-player-container">
-          <h2>Create New Player</h2>
-          <div className="player-form">
-            <form onSubmit={this.createPlayer}>
-
-              <p>First Name</p>
-              <input
-                id="firstName"
-                type="text"
-                name="firstName"
-                onChange={this.handleInput}
-              />
-              <p>Last Name</p>
-              <input
-                id="lastName"
-                type="text"
-                name="lastName"
-                onChange={this.handleInput}
-              />
-              <p>Rating <span>Enter a number</span></p>
-              <input
-                id="rating"
-                type="number"
-                name="rating"
-                onChange={this.handleInput}
-              />
-              <p>Handedness</p>
-              <select
-                name="handedness"
-                id="handedness"
-                value={this.state.handedness}
-                onChange={this.handleInput}
-              >
-                <option value="" />
-                <option value="left">Left</option>
-                <option value="right">Right</option>
-              </select>
-              <button id="create" type="submit" value="Submit" disabled={this.state.button}>
-                Create
-              </button>
-              <button type="reset" value="Reset">
-                Cancel
-              </button>
-            </form>
+        <div className="make-player-flex">
+          <div className="make-player-container">
+            <h2>Create New Player</h2>
+            <div className="player-form">
+              <form onSubmit={this.createPlayer}>
+                <p>First Name</p>
+                <input
+                  id="firstName"
+                  type="text"
+                  name="firstName"
+                  onChange={this.handleInput}
+                />
+                <p>Last Name</p>
+                <input
+                  id="lastName"
+                  type="text"
+                  name="lastName"
+                  onChange={this.handleInput}
+                />
+                <p>Rating <span className="italic">(number)</span></p>
+                <input
+                  id="rating"
+                  type="number"
+                  name="rating"
+                  onChange={this.handleInput}
+                />
+                <p>Handedness</p>
+                <select
+                  name="handedness"
+                  id="handedness"
+                  value={this.state.handedness}
+                  onChange={this.handleInput}
+                >
+                  <option value="" />
+                  <option value="left">Left</option>
+                  <option value="right">Right</option>
+                </select>
+                <button id="create" type="submit" value="Submit" disabled={this.state.button}>
+                  Create
+                </button>
+              </form>
+            </div>
+          </div>
+          <div className="player-card">
+            <Roster first={this.state.firstName} last={this.state.lastName} rating={this.state.rating} hand={this.state.handedness} id={this.state.id} />
           </div>
         </div>
-        <div className="player-card">
-          <Roster first={this.state.firstName} last={this.state.lastName} rating={this.state.rating} hand={this.state.handedness} id={this.state.id} />
-        </div>
+        <button className="reset">
+          Cancel
+        </button>
       </div>
 
 
