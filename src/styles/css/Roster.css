@@ -15,7 +15,8 @@
   flex-direction: column;
   justify-content: space-between; }
   .roster-card #large {
-    font-size: 60px; }
+    font-size: 60px;
+    padding-top: 14px; }
 
 #small {
   display: none; }

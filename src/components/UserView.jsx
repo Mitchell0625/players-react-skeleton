@@ -5,20 +5,10 @@ import Roster from './Roster';
 import { getPlayers, deletePlayer, logged } from '../api';
 import '../styles/css/UserView.css';
 
-const defaultProps = {
-  user: {}
-};
-
-
 const propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired
-  }).isRequired,
-  user: PropTypes.shape({
-    user: PropTypes.shape({
-      id: PropTypes.id
-    })
-  })
+  }).isRequired
 };
 
 class UserView extends Component {
@@ -29,7 +19,6 @@ class UserView extends Component {
       players: [],
       err: '',
       errHappen: false
-
     };
     this.deleteAPlayer = this.deleteAPlayer.bind(this);
   }
@@ -68,21 +57,21 @@ class UserView extends Component {
     const { players } = this.state;
     let team = (
       <div className="empty">
-        {(this.props.user || logged()) ? (
+        {logged() ? (
           <div>
             <p>Your roster is empty.</p>
           </div>
         ) : (
-            <div>
-              <p>Please login to view roster</p>
-              <button
-                className="login"
-                onClick={() => this.props.history.push('/login')}
-              >
-                Login now
-              </button>
-            </div>)
-        }
+          <div>
+            <p>Please login to view roster</p>
+            <button
+              className="login"
+              onClick={() => this.props.history.push('/login')}
+            >
+              Login now
+            </button>
+          </div>
+        )}
       </div>
     );
 
@@ -127,6 +116,5 @@ class UserView extends Component {
   }
 }
 
-UserView.defaultProps = defaultProps;
 UserView.propTypes = propTypes;
 export default withRouter(UserView);

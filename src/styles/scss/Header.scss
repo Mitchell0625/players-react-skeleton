@@ -2,48 +2,56 @@
 
 .header-container {
   padding: 1em;
-  
+
   @extend %flex-row-center;
+
   background-color: $orange;
   justify-content: space-between;
   width: $display-width;
-  height: 10vh; 
+  height: 10vh;
   margin-bottom: 10px;
+
   .logo {
-        @extend %flex-row-center;
-    }
+    @extend %flex-row-center;
+  }
 }
+
 .header-h1 {
-    font-family: $logo-font;
-    color: white;
-    font-size: 40px;
- letter-spacing: 2px;
+  font-family: $logo-font;
+  color: white;
+  font-size: 40px;
+  letter-spacing: 2px;
 }
 
 .header-img {
-    width: 50px;
-    margin-left: -6px;
-    margin-top: 5px;
+  width: 50px;
+  margin-left: -6px;
+  margin-top: 5px;
 }
 
 .logout {
-    @extend %cancel;
-    background-color: white;
+  @extend %cancel;
+
+  background-color: white;
 }
 
-@media (max-width: 767px) {
-    .header-container {
-        padding: 0;
-    }
-    .header-h1 {
-        font-size: 30px;
-        letter-spacing: 1px;
-    } 
-    .header-img {
-        width: 30px;
-    }
-    .logout {
-        padding: 5px;
-    }
+@media ( max-width: 767px ) {
+
+  .header-container {
+    padding: 0;
+  }
+
+  .header-h1 {
+    font-size: 30px;
+    letter-spacing: 1px;
+  }
+
+  .header-img {
+    width: 30px;
+  }
+
+  .logout {
+    padding: 5px;
+  }
 }
 

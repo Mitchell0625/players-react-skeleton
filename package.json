@@ -8,7 +8,7 @@
     "e2e": "cypress open",
     "unit": "jest",
     "lint:js": "eslint src/**/**/*.js src/**/**/*.jsx tests/**/**/*.js",
-    "lint:style": "stylelint src/**/**/*.css src/**/**/*.scss"
+    "lint:style": "stylelint src/**/**/*.scss"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -33,8 +33,6 @@
     "prettier": "^1.13.5",
     "prettierrc": "0.0.0-5",
     "stylelint": "^9.3.0",
-    "stylelint-config-recommended-scss": "^3.2.0",
-    "stylelint-config-standard": "^18.2.0",
-    "stylelint-scss": "^3.1.3"
+    "stylelint-config-standard": "^18.2.0"
   }
 }

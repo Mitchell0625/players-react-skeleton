@@ -39,14 +39,8 @@ class App extends Component {
             path="/register"
             render={() => <Register holdUser={this.holdUser} />}
           />
-          <Route
-            path="/roster"
-            render={() => <UserView user={this.state.user} />}
-          />
-          <Route
-            path="/player/new"
-            render={() => <MakePlayer user={this.state.user} />}
-          />
+          <Route path="/roster" render={() => <UserView />} />
+          <Route path="/player/new" render={() => <MakePlayer />} />
         </Switch>
       </div>
     );

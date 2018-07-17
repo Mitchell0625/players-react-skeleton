@@ -1,49 +1,53 @@
 @import './utils.scss';
 
 .home-container {
-    width: $display-width;
-    @extend %flex-row-center;
+  width: $display-width;
 
-    flex-direction: column;
-    margin-top: 70px;
+  @extend %flex-row-center;
+
+  flex-direction: column;
+  margin-top: 70px;
 }
-.pong-game {
-    height: 50vh;
-    width: 60%;
-    flex-grow: 1;
-    @extend %flex-row-center;
 
-    justify-content: space-between;
-    position: relative;
-    border: 1px solid white;
-    padding: 0 10%;
-    
+.pong-game {
+  height: 50vh;
+  width: 60%;
+  flex-grow: 1;
+
+  @extend %flex-row-center;
+
+  justify-content: space-between;
+  position: relative;
+  border: 1px solid white;
+  padding: 0 10%;
 }
 
 .home-button {
-    @extend %large-button;
+  @extend %large-button;
 
-    border: 1px solid yellow;
-    box-shadow: 2px 3px yellow;
-    background-color: white;
-    color: #333333;  
+  border: 1px solid yellow;
+  box-shadow: 2px 3px yellow;
+  background-color: white;
+  color: #333333;
 }
-.home-button:hover{
-    background-color: rgba(51, 51, 51, 0.836);
-    color: white;
+
+.home-button:hover {
+  background-color: rgba(51, 51, 51, 0.836);
+  color: white;
 }
 
 .pong {
-    background-color: white;
-    opacity: 0
+  background-color: white;
+  opacity: 0;
 }
-.paddle {
-height: 100px;
-width: 15px;
-position: relative;
-background-color: #333333;
 
+.paddle {
+  height: 100px;
+  width: 15px;
+  position: relative;
+  background-color: #333333;
 }
+
 .net {
   height: 80%;
   width: 2px;
@@ -70,103 +74,119 @@ background-color: #333333;
   animation: right-paddle 2.7s linear;
 }
 
-@keyframes left-paddle{
-0% {
-bottom:30%;
-opacity: 1;
-}
-25% {
-bottom:10%;
-opacity: 1;
-}
-35% {
-    bottom:-10%;
-    opacity: 1; 
-}
-50%{
- bottom:-20%;
- opacity: 1;   
-}
-75%{
-bottom:10%;
-opacity: 1;
-}
-100%{
-bottom:30%;
-opacity: 0.5;
-}
-}
+@keyframes left-paddle {
 
-@keyframes ball{
-0%{
-    right: 44%;
-    bottom:30%;
+  0% {
+    bottom: 30%;
     opacity: 1;
-}
-25%{
-    right:-44%;
-    bottom: -30%;
-    opacity: 1
-}
-50%{
-    right:44%;
-    bottom:-30%;
-    opacity: 1;   
-   }
-   75%{
-       right:-44%;
-   bottom:30%;
-   opacity: 1;
-   }
-   100%{
-       right:50%;
-   bottom:-30%;
-   opacity: 1;
-   }
-100%{
-    leftt:0%;
-    top:30%;
-    opacity: 0.5
-}
-}
-@keyframes right-paddle{
-    0%{
-        top:30%;
-        opacity: 1;
-        }
-        25%{
-        top:30%;
-        opacity: 1;
-        }
-        35%{
-            top:20%;
-            opacity: 1; 
-        }
-        50%{
-         top:0%;
-         opacity: 1;   
-        }
-        75%{
-        top:30%;
-        opacity: 1;
-        }
-        100%{
-        top:30%;
-        opacity: 0.5;
-        }
-        }
+  }
 
-@media (max-width: 767px){
-    .home-button{
-        width: 232px;
-        height: 60px;
-    }
-    .pong-game{
-        width: 80%;
-        padding: 0;
-    }
-    .ball{
-        width: 20px;
-        height:20px;
-    }
+  25% {
+    bottom: 10%;
+    opacity: 1;
+  }
+
+  35% {
+    bottom: -10%;
+    opacity: 1;
+  }
+
+  50% {
+    bottom: -20%;
+    opacity: 1;
+  }
+
+  75% {
+    bottom: 10%;
+    opacity: 1;
+  }
+
+  100% {
+    bottom: 30%;
+    opacity: 0.5;
+  }
+}
+
+@keyframes ball {
+
+  0% {
+    right: 44%;
+    bottom: 30%;
+    opacity: 1;
+  }
+
+  25% {
+    right: -44%;
+    bottom: -30%;
+    opacity: 1;
+  }
+
+  50% {
+    right: 44%;
+    bottom: -30%;
+    opacity: 1;
+  }
+
+  75% {
+    right: -44%;
+    bottom: 30%;
+    opacity: 1;
+  }
+
+  100% {
+    right: 50%;
+    top: 30%;
+    opacity: 1;
+  }
+}
+
+@keyframes right-paddle {
+
+  0% {
+    top: 30%;
+    opacity: 1;
+  }
+
+  25% {
+    top: 30%;
+    opacity: 1;
+  }
+
+  35% {
+    top: 20%;
+    opacity: 1;
+  }
+
+  50% {
+    top: 0%;
+    opacity: 1;
+  }
+
+  75% {
+    top: 30%;
+    opacity: 1;
+  }
+
+  100% {
+    top: 30%;
+    opacity: 0.5;
+  }
+}
+
+@media ( max-width: 767px ) {
+
+  .home-button {
+    width: 232px;
+    height: 60px;
+  }
+
+  .pong-game {
+    width: 80%;
+    padding: 0;
+  }
+
+  .ball {
+    width: 20px;
+    height: 20px;
+  }
 }

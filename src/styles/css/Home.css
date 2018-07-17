@@ -104,12 +104,8 @@
     opacity: 1; }
   100% {
     right: 50%;
-    bottom: -30%;
-    opacity: 1; }
-  100% {
-    leftt: 0%;
     top: 30%;
-    opacity: 0.5; } }
+    opacity: 1; } }
 @keyframes right-paddle {
   0% {
     top: 30%;

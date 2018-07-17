@@ -22,10 +22,10 @@
 
 .login-page a {
   @extend %cancel;
+
   background-color: lightgray;
   text-decoration: none;
   color: #333333;
-  
 }
 
 .error {
